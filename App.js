@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Navbar } from './src/Navbar';
+import { Navbar, AddTodo } from './src';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View>
       <Navbar title='Todo App' />
+      <View style={styles.container}>
+        <AddTodo />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -13,5 +16,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 30,
+    paddingVertical: 20,
   },
 });
