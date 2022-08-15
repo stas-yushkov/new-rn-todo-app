@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Button } from "react-native";
+import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 
 import colors from './constants/colors';
 
@@ -14,7 +14,7 @@ export const AddTodo = ({ onSubmit }) => {
       console.log(`${(new Date).toLocaleTimeString()}: ${value}`);
       setValue('');
     } else {
-      //throw some error
+      Alert.alert('Todo title must be provided', 'Please specify todo title');
     }
   }
 
