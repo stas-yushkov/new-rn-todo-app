@@ -36,6 +36,7 @@ export const AddTodo = ({ onSubmit }) => {
         value={value}
         placeholder='Please specify todo title'
         placeholderTextColor={colors[DEFAULT_COLOR_THEME].PLACEHOLDER_TEXT_COLOR}
+      // keyboardType='phone-pad'
       // autoCorrect={false}
       // autoCapitalize="none"
       />
