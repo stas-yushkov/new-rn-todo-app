@@ -26,8 +26,8 @@ export const AddTodo = ({ onSubmit }) => {
         value={value}
         placeholder='Please specify todo title'
         placeholderTextColor={colors[DEFAULT_COLOR_THEME].PLACEHOLDER_TEXT_COLOR}
-        autoCorrect={false}
-        autoCapitalize="none"
+      // autoCorrect={false}
+      // autoCapitalize="none"
       />
       <Button title="Add" onPress={pressHandler} />
     </View>
