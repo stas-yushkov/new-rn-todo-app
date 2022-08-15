@@ -14,7 +14,17 @@ export const AddTodo = ({ onSubmit }) => {
       console.log(`${(new Date).toLocaleTimeString()}: ${value}`);
       setValue('');
     } else {
-      Alert.alert('Todo title must be provided', 'Please specify todo title');
+      Alert.alert(
+        'Todo title must be provided',
+        'Please specify todo title',
+        [{
+          text: 'Ok',
+          onPress: () => console.log('Ok Pressed')
+        }],
+        {
+          cancelable: true
+        }
+      );
     }
   }
 
