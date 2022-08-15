@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button } from "react-native";
 
+import colors from './constants/colors';
+
+import { DEFAULT_COLOR_THEME } from './constants/'
+
 export const AddTodo = ({ onSubmit }) => {
+  const [value, setValue] = useState('');
+
   const pressHandler = () => {
-    onSubmit('Test todo');
-    console.log(`${(new Date).toLocaleTimeString()} Test todo`);
+    if (value.trim()) {
+      onSubmit(value);
+      console.log(`${(new Date).toLocaleTimeString()}: ${value}`);
+      setValue('');
+    } else {
+      //throw some error
+    }
   }
 
   return (
     <View style={styles.block}>
-      <TextInput style={styles.input} />
+      <TextInput
+        style={styles.input}
+        onChangeText={setValue}
+        value={value}
+        placeholder='Please specify todo title'
+        placeholderTextColor={colors[DEFAULT_COLOR_THEME].PLACEHOLDER_TEXT_COLOR}
+      />
       <Button title="Add" onPress={pressHandler} />
     </View>
   )
@@ -28,6 +45,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderStyle: 'solid',
     borderBottomWidth: 2,
-    borderBottomColor: '#2482ff'
+    color: colors[DEFAULT_COLOR_THEME].TEXT_COLOR,
+    borderBottomColor: colors[DEFAULT_COLOR_THEME].BORDER_BOTTOM_COLOR,
   },
 })

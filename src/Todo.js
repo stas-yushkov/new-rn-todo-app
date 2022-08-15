@@ -1,6 +1,10 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native'
 
+import { DEFAULT_COLOR_THEME } from './constants';
+
+import colors from './constants/colors';
+
 export const Todo = ({ todo }) => {
   return (
     <View style={styles.todo}>
@@ -15,11 +19,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     borderWidth: 1,
-    borderColor: '#a4a3a5',
+    borderColor: colors[DEFAULT_COLOR_THEME].TODO_BORDER_COLOR,
     borderRadius: 5,
     marginBottom: 10,
   },
   text: {
-    color: '#cecdce'
+    color: colors[DEFAULT_COLOR_THEME].TEXT_COLOR,
   }
 })

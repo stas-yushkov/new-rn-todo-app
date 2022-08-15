@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
+
 import { Navbar, AddTodo, Todo } from './src';
+
+import colors from './src/constants/colors';
+
+import { DEFAULT_COLOR_THEME } from './src/constants/';
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -49,7 +54,7 @@ export default function App() {
 const styles = StyleSheet.create({
   app: {
     height: '100%',
-    backgroundColor: '#282c34'
+    backgroundColor: colors[DEFAULT_COLOR_THEME].APP_BG_COLOR,
   },
   container: {
     paddingHorizontal: 30,
