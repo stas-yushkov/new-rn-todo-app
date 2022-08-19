@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import { Navbar, AddTodo, Todo } from './src';
 
@@ -52,13 +52,15 @@ export default function App() {
       <View style={styles.container}>
         <AddTodo onSubmit={addTodo} />
 
-        <ScrollView style={styles.scroll}>
+        <FlatList />
+
+        <View style={styles.scroll}>
           {todos.map(todo => {
             return (
               <Todo key={todo.id} todo={todo}></Todo>
             )
           })}
-        </ScrollView>
+        </View>
       </View>
     </View>
   );
