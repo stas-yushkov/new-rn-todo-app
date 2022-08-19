@@ -1,15 +1,21 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { DEFAULT_COLOR_THEME } from './constants';
+import { DEFAULT_COLOR_THEME, ACTIVE_OPACITY_NUM } from './constants';
 
 import colors from './constants/colors';
 
-export const Todo = ({ todo }) => {
+export const Todo = ({ todo, onRemove }) => {
   return (
-    <View style={styles.todo}>
-      <Text style={styles.text} key={todo.id}>{todo.title}</Text>
-    </View>
+    <TouchableOpacity
+      activeOpacity={ACTIVE_OPACITY_NUM}
+      onPress={() => console.log('Pressed: ', todo.title)}
+      onLongPress={() => onRemove(todo.id)}
+    >
+      <View style={styles.todo}>
+        <Text style={styles.text} key={todo.id}>{todo.title}</Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 

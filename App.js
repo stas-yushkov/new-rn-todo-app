@@ -9,34 +9,21 @@ import { DEFAULT_COLOR_THEME } from './src/constants/';
 
 export default function App() {
   const [todos, setTodos] = useState([
-    { id: 1, title: 1 },
-    { id: 2, title: 2 },
-    { id: 3, title: 3 },
-    { id: 4, title: 4 },
-    { id: 5, title: 5 },
-    { id: 6, title: 6 },
-    { id: 7, title: 7 },
-    { id: 8, title: 8 },
-    { id: 9, title: 9 },
-    { id: 10, title: 10 },
-    { id: 11, title: 11 },
-    { id: 12, title: 12 },
+    // { id: 1, title: 1 },
+    // { id: 2, title: 2 },
+    // { id: 3, title: 3 },
+    // { id: 4, title: 4 },
+    // { id: 5, title: 5 },
+    // { id: 6, title: 6 },
+    // { id: 7, title: 7 },
+    // { id: 8, title: 8 },
+    // { id: 9, title: 9 },
+    // { id: 10, title: 10 },
+    // { id: 11, title: 11 },
+    // { id: 12, title: 12 },
   ]);
 
   const addTodo = (title) => {
-    // const newTodo = {
-    //   id: Date.now().toString(),
-    //   title: title
-    // }
-
-    // setTodos(todos.concat([newTodo]))
-
-    // setTodos((prevTodos) => {
-    //   return [
-    //     ...prevTodos, newTodo
-    //   ]
-    // })
-
     setTodos(prev => [
       ...prev,
       {
@@ -44,6 +31,10 @@ export default function App() {
         title
       }
     ])
+  }
+
+  const removeTodo = (itemId) => {
+    setTodos(prev => prev.filter(({ id }) => id !== itemId))
   }
 
   return (
@@ -55,7 +46,7 @@ export default function App() {
         <FlatList
           style={styles.scroll}
           data={todos}
-          renderItem={({ item }) => (<Todo todo={item} />)}
+          renderItem={({ item }) => (<Todo todo={item} onRemove={removeTodo} />)}
           keyExtractor={item => item.id}
         />
       </View>
