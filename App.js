@@ -52,17 +52,14 @@ export default function App() {
       <View style={styles.container}>
         <AddTodo onSubmit={addTodo} />
 
-        <FlatList />
-
-        <View style={styles.scroll}>
-          {todos.map(todo => {
-            return (
-              <Todo key={todo.id} todo={todo}></Todo>
-            )
-          })}
-        </View>
+        <FlatList
+          style={styles.scroll}
+          data={todos}
+          renderItem={({ item }) => (<Todo todo={item} />)}
+          keyExtractor={item => item.id}
+        />
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -72,10 +69,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors[DEFAULT_COLOR_THEME].APP_BG_COLOR,
   },
   container: {
+    flex: 1,
     paddingHorizontal: 30,
     paddingVertical: 20
   },
   scroll: {
-    height: '50%'
+    flex: 1,
   }
 });
