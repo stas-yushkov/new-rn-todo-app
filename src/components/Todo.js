@@ -5,11 +5,11 @@ import { DEFAULT_COLOR_THEME, ACTIVE_OPACITY_NUM } from '../constants';
 
 import colors from '../constants/colors';
 
-export const Todo = ({ todo, onRemove }) => {
+export const Todo = ({ todo, onRemove, onOpen }) => {
   return (
     <TouchableOpacity
       activeOpacity={ACTIVE_OPACITY_NUM}
-      onPress={() => console.log('Pressed: ', todo.title)}
+      onPress={() => onOpen(todo.id)}
       onLongPress={onRemove.bind(null, todo.id)}
     >
       <View style={styles.todo}>
