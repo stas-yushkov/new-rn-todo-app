@@ -8,6 +8,7 @@ export default {
     TODO_BORDER_COLOR: '#a4a3a5',
     ALERT_COLOR: '#e06252',
     EDIT_BUTTON_COLOR: '#c5c53e',
+    SHADOW_COLOR: '#c678dd',
   },
   light: {
     ACCENT_COLOR: '#c678dd',
@@ -18,6 +19,7 @@ export default {
     TODO_BORDER_COLOR: '#a4a3a5',
     ALERT_COLOR: '#e06252',
     EDIT_BUTTON_COLOR: '#c5c53e',
+    SHADOW_COLOR: '#101010',
   }
 };
 

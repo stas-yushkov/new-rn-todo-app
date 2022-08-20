@@ -38,10 +38,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
           <Button
             title='Remove'
             color={colors[theme].ALERT_COLOR}
-            onPress={() => {
-              removeTodo(todo.id);
-              goBack();
-            }}
+            onPress={() => { removeTodo(todo.id) }}
           />
         </View>
       </View>

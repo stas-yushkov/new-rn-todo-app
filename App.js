@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View, Alert } from 'react-native';
 
 import { Navbar } from './src/components';
 import { MainScreen, TodoScreen } from './src/screens/';
@@ -37,7 +37,25 @@ export default function App() {
   }
 
   const removeTodo = (itemId) => {
-    setTodos(prev => prev.filter(({ id }) => id !== itemId))
+    const todoToRemove = todos.find(todo => todo.id === itemId)
+    Alert.alert(
+      "Removing todo...",
+      `Are you shure you want to remove '${todoToRemove.title}'?`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        {
+          text: "Remove",
+          onPress: () => {
+            setTodoId(null);
+            setTodos(prev => prev.filter(({ id }) => id !== itemId));
+          }
+        }
+      ],
+      { cancelable: true }
+    );
   }
 
   const toggleTheme = () => {
