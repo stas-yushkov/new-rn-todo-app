@@ -9,9 +9,9 @@ import colors from './src/constants/colors';
 
 
 export default function App() {
-  const [todoId, setTodoId] = useState(null);
+  const [todoId, setTodoId] = useState(1);
   const [todos, setTodos] = useState([
-    { id: 1, title: 1 },
+    { id: 1, title: 'Title of FIRST todo' },
     { id: 2, title: 2 },
     { id: 3, title: 3 },
     { id: 4, title: 4 },
@@ -50,7 +50,13 @@ export default function App() {
 
   if (todoId) {
     const selectedTodo = todos.find(todo => todo.id === todoId)
-    content = <TodoScreen todo={selectedTodo} goBack={() => setTodoId(null)} />
+    content = (
+      <TodoScreen
+        todo={selectedTodo}
+        goBack={() => setTodoId(null)}
+        removeTodo={removeTodo}
+      />
+    )
   }
 
   return (

@@ -10,6 +10,7 @@ export default {
     TEXT_COLOR: '#cecdce',
     BORDER_BOTTOM_COLOR: '#2482ff',
     TODO_BORDER_COLOR: '#a4a3a5',
+    ALERT_COLOR: '#e06252',
   }
 };
 
