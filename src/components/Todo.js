@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { DEFAULT_COLOR_THEME, ACTIVE_OPACITY_NUM } from './constants';
+import { DEFAULT_COLOR_THEME, ACTIVE_OPACITY_NUM } from '../constants';
 
-import colors from './constants/colors';
+import colors from '../constants/colors';
 
 export const Todo = ({ todo, onRemove }) => {
   return (

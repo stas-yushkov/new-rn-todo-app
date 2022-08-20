@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { Navbar, AddTodo, Todo } from './src';
-
-import colors from './src/constants/colors';
+import { Navbar } from './src/components';
+import { MainScreen, TodoScreen } from './src/screens/';
 
 import { DEFAULT_COLOR_THEME } from './src/constants/';
+import colors from './src/constants/colors';
+
 
 export default function App() {
+  const [todoId, setTodoId] = useState(null);
   const [todos, setTodos] = useState([
     // { id: 1, title: 1 },
     // { id: 2, title: 2 },
@@ -37,18 +39,23 @@ export default function App() {
     setTodos(prev => prev.filter(({ id }) => id !== itemId))
   }
 
+  let content = (
+    <MainScreen
+      todos={todos}
+      addTodo={addTodo}
+      removeTodo={removeTodo}
+    />
+  )
+
+  if (todoId) {
+    content = <TodoScreen />
+  }
+
   return (
     <View style={styles.app}>
       <Navbar title='Todo App' />
       <View style={styles.container}>
-        <AddTodo onSubmit={addTodo} />
-
-        <FlatList
-          style={styles.scroll}
-          data={todos}
-          renderItem={({ item }) => (<Todo todo={item} onRemove={removeTodo} />)}
-          keyExtractor={item => item.id}
-        />
+        {content}
       </View>
     </View >
   );
@@ -64,7 +71,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 20
   },
-  scroll: {
-    flex: 1,
-  }
 });

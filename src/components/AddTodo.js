@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 
-import colors from './constants/colors';
+import colors from '../constants/colors';
 
-import { DEFAULT_COLOR_THEME } from './constants/'
+import { DEFAULT_COLOR_THEME } from '../constants'
 
 export const AddTodo = ({ onSubmit }) => {
   const [value, setValue] = useState('');

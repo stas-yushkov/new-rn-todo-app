@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-import colors from './constants/colors';
-import { DEFAULT_COLOR_THEME } from './constants/';
+import colors from '../constants/colors';
+import { DEFAULT_COLOR_THEME } from '../constants/';
 
 export const Navbar = ({ title }) => {
   return (
