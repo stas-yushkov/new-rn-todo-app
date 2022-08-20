@@ -6,11 +6,15 @@ import { DEFAULT_COLOR_THEME, ACTIVE_OPACITY_NUM } from './constants';
 import colors from './constants/colors';
 
 export const Todo = ({ todo, onRemove }) => {
+  const longPressHandler = () => {
+    onRemove(todo.id)
+  }
+
   return (
     <TouchableOpacity
       activeOpacity={ACTIVE_OPACITY_NUM}
       onPress={() => console.log('Pressed: ', todo.title)}
-      onLongPress={() => onRemove(todo.id)}
+      onLongPress={longPressHandler}
     >
       <View style={styles.todo}>
         <Text style={styles.text} key={todo.id}>{todo.title}</Text>
