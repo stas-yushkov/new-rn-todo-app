@@ -1,12 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
+import { AppCard } from "../components/ui";
 import { DEFAULT_COLOR_THEME } from "../constants";
 import colors from "../constants/colors";
 
-export const TodoScreen = ({ todo, goBack, removeTodo }) => {
+export const TodoScreen = ({ todo, goBack, removeTodo, editTodo }) => {
   return (
     <View>
-      <Text>{todo.title}</Text>
+      <AppCard style={styles.card}>
+        <Text style={styles.title}>{todo.title}</Text>
+        <Button
+          title='Edit'
+          color={colors[DEFAULT_COLOR_THEME].EDIT_BUTTON_COLOR}
+          onPress={editTodo}
+        />
+      </AppCard>
+
       <View style={styles.buttons}>
         <View style={styles.button}>
           <Button
@@ -37,5 +46,13 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '40%'
+  },
+  card: {
+    marginBottom: 20,
+    padding: 15,
+  },
+  title: {
+    fontSize: 26,
+    color: colors[DEFAULT_COLOR_THEME].TEXT_COLOR,
   }
 })

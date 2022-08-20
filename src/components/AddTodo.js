@@ -36,11 +36,12 @@ export const AddTodo = ({ onSubmit }) => {
         value={value}
         placeholder='Please specify todo title'
         placeholderTextColor={colors[DEFAULT_COLOR_THEME].PLACEHOLDER_TEXT_COLOR}
-      // keyboardType='phone-pad'
-      // autoCorrect={false}
-      // autoCapitalize="none"
       />
-      <Button title="Add" onPress={pressHandler} />
+      <Button
+        title="Add"
+        color={colors[DEFAULT_COLOR_THEME].ACCENT_COLOR}
+        onPress={pressHandler}
+      />
     </View>
   )
 }
@@ -59,6 +60,6 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderBottomWidth: 2,
     color: colors[DEFAULT_COLOR_THEME].TEXT_COLOR,
-    borderBottomColor: colors[DEFAULT_COLOR_THEME].BORDER_BOTTOM_COLOR,
+    borderBottomColor: colors[DEFAULT_COLOR_THEME].ACCENT_COLOR,
   },
 })

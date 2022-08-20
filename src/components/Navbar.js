@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   text: {
-    color: colors[DEFAULT_COLOR_THEME].NAVBAR_TEXT_COLOR,
+    color: colors[DEFAULT_COLOR_THEME].ACCENT_COLOR,
     fontSize: 26,
   }
 })

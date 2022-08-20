@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
 import { Navbar } from './src/components';
 import { MainScreen, TodoScreen } from './src/screens/';
 
-import { DEFAULT_COLOR_THEME } from './src/constants/';
+import { DEFAULT_COLOR_THEME, STATUS_BAR_STYLES } from './src/constants/';
 import colors from './src/constants/colors';
 
 
@@ -61,7 +61,15 @@ export default function App() {
 
   return (
     <View style={styles.app}>
+      <StatusBar
+        animated={true}
+        backgroundColor={colors[DEFAULT_COLOR_THEME].NAVBAR_BG_COLOR}
+        barStyle={STATUS_BAR_STYLES[DEFAULT_COLOR_THEME]}
+      // hidden
+      />
+
       <Navbar title='Todo App' />
+
       <View style={styles.container}>
         {content}
       </View>
