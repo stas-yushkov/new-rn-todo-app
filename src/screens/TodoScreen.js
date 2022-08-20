@@ -1,17 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
+
 import { AppCard } from "../components/ui";
-import { DEFAULT_COLOR_THEME } from "../constants";
+
 import colors from "../constants/colors";
 
-export const TodoScreen = ({ todo, goBack, removeTodo, editTodo }) => {
+
+export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
   return (
     <View>
-      <AppCard style={styles.card}>
-        <Text style={styles.title}>{todo.title}</Text>
+      <AppCard theme={theme} style={styles.card}>
+        <Text style={
+          {
+            ...styles.title,
+            color: colors[theme].TEXT_COLOR
+          }
+        }
+        >
+          {todo.title}
+        </Text>
         <Button
           title='Edit'
-          color={colors[DEFAULT_COLOR_THEME].EDIT_BUTTON_COLOR}
+          color={colors[theme].EDIT_BUTTON_COLOR}
           onPress={editTodo}
         />
       </AppCard>
@@ -20,14 +30,14 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo }) => {
         <View style={styles.button}>
           <Button
             title='Back'
-            color={colors[DEFAULT_COLOR_THEME].PLACEHOLDER_TEXT_COLOR}
+            color={colors[theme].PLACEHOLDER_TEXT_COLOR}
             onPress={goBack}
           />
         </View>
         <View style={styles.button}>
           <Button
             title='Remove'
-            color={colors[DEFAULT_COLOR_THEME].ALERT_COLOR}
+            color={colors[theme].ALERT_COLOR}
             onPress={() => {
               removeTodo(todo.id);
               goBack();
@@ -53,6 +63,5 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 26,
-    color: colors[DEFAULT_COLOR_THEME].TEXT_COLOR,
   }
 })

@@ -3,16 +3,22 @@ import { StyleSheet, FlatList, View } from "react-native";
 
 import { AddTodo, Todo } from "../components";
 
-export const MainScreen = ({ addTodo, todos, removeTodo, openTodo }) => {
+
+export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
   return (
     <View style={styles.container}>
-      <AddTodo onSubmit={addTodo} />
+      <AddTodo theme={theme} onSubmit={addTodo} />
 
       <FlatList
         style={styles.scroll}
         data={todos}
         renderItem={({ item }) => (
-          <Todo todo={item} onRemove={removeTodo} onOpen={openTodo} />
+          <Todo
+            theme={theme}
+            todo={item}
+            onRemove={removeTodo}
+            onOpen={openTodo}
+          />
         )}
         keyExtractor={item => item.id}
       />

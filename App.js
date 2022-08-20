@@ -10,6 +10,7 @@ import colors from './src/constants/colors';
 
 export default function App() {
   const [todoId, setTodoId] = useState(1);
+  const [theme, setTheme] = useState(DEFAULT_COLOR_THEME);
   const [todos, setTodos] = useState([
     { id: 1, title: 'Title of FIRST todo' },
     { id: 2, title: 2 },
@@ -39,8 +40,17 @@ export default function App() {
     setTodos(prev => prev.filter(({ id }) => id !== itemId))
   }
 
+  const toggleTheme = () => {
+    if (theme === DEFAULT_COLOR_THEME) {
+      setTheme(Object.keys(colors)[1])
+    } else {
+      setTheme(Object.keys(colors)[0])
+    }
+  }
+
   let content = (
     <MainScreen
+      theme={theme}
       todos={todos}
       addTodo={addTodo}
       removeTodo={removeTodo}
@@ -52,6 +62,7 @@ export default function App() {
     const selectedTodo = todos.find(todo => todo.id === todoId)
     content = (
       <TodoScreen
+        theme={theme}
         todo={selectedTodo}
         goBack={() => setTodoId(null)}
         removeTodo={removeTodo}
@@ -60,15 +71,26 @@ export default function App() {
   }
 
   return (
-    <View style={styles.app}>
+    <View
+      style={
+        {
+          ...styles.app,
+          backgroundColor: colors[theme].APP_BG_COLOR
+        }
+      }
+    >
       <StatusBar
         animated={true}
-        backgroundColor={colors[DEFAULT_COLOR_THEME].NAVBAR_BG_COLOR}
-        barStyle={STATUS_BAR_STYLES[DEFAULT_COLOR_THEME]}
+        backgroundColor={colors[theme].NAVBAR_BG_COLOR}
+        barStyle={STATUS_BAR_STYLES[theme]}
       // hidden
       />
 
-      <Navbar title='Todo App' />
+      <Navbar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        title='Todo App'
+      />
 
       <View style={styles.container}>
         {content}
@@ -80,7 +102,6 @@ export default function App() {
 const styles = StyleSheet.create({
   app: {
     height: '100%',
-    backgroundColor: colors[DEFAULT_COLOR_THEME].APP_BG_COLOR,
   },
   container: {
     flex: 1,

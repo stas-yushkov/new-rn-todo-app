@@ -1,14 +1,29 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
+import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
-import { DEFAULT_COLOR_THEME } from '../constants/';
 
-export const Navbar = ({ title }) => {
+
+export const Navbar = ({ title, toggleTheme, theme }) => {
   return (
-    <View style={styles.navbar}>
-      <Text style={styles.text}>{title}</Text>
-    </View>
+    <TouchableOpacity activeOpacity={ACTIVE_OPACITY_NUM} onPress={toggleTheme} >
+      <View
+        style={{
+          ...styles.navbar,
+          backgroundColor: colors[theme].NAVBAR_BG_COLOR
+        }}
+      >
+        <Text
+          style={{
+            ...styles.text,
+            color: colors[theme].ACCENT_COLOR
+          }}
+        >
+          {title}
+        </Text>
+      </View>
+    </TouchableOpacity>
   )
 }
 
@@ -17,11 +32,9 @@ const styles = StyleSheet.create({
     height: 70,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    backgroundColor: colors[DEFAULT_COLOR_THEME].NAVBAR_BG_COLOR,
     paddingBottom: 10,
   },
   text: {
-    color: colors[DEFAULT_COLOR_THEME].ACCENT_COLOR,
     fontSize: 26,
   }
 })

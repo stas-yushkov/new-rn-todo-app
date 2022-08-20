@@ -3,9 +3,8 @@ import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
 
 import colors from '../constants/colors';
 
-import { DEFAULT_COLOR_THEME } from '../constants'
 
-export const AddTodo = ({ onSubmit }) => {
+export const AddTodo = ({ onSubmit, theme }) => {
   const [value, setValue] = useState('');
 
   const pressHandler = () => {
@@ -31,15 +30,21 @@ export const AddTodo = ({ onSubmit }) => {
   return (
     <View style={styles.block}>
       <TextInput
-        style={styles.input}
+        style={
+          {
+            ...styles.input,
+            color: colors[theme].TEXT_COLOR,
+            borderBottomColor: colors[theme].ACCENT_COLOR,
+          }
+        }
         onChangeText={setValue}
         value={value}
         placeholder='Please specify todo title'
-        placeholderTextColor={colors[DEFAULT_COLOR_THEME].PLACEHOLDER_TEXT_COLOR}
+        placeholderTextColor={colors[theme].PLACEHOLDER_TEXT_COLOR}
       />
       <Button
         title="Add"
-        color={colors[DEFAULT_COLOR_THEME].ACCENT_COLOR}
+        color={colors[theme].ACCENT_COLOR}
         onPress={pressHandler}
       />
     </View>
@@ -59,7 +64,5 @@ const styles = StyleSheet.create({
     padding: 10,
     borderStyle: 'solid',
     borderBottomWidth: 2,
-    color: colors[DEFAULT_COLOR_THEME].TEXT_COLOR,
-    borderBottomColor: colors[DEFAULT_COLOR_THEME].ACCENT_COLOR,
   },
 })
