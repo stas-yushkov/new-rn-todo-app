@@ -7,14 +7,21 @@ import { AppCard } from "../components/ui";
 import colors from "../constants/colors";
 
 
-export const TodoScreen = ({ todo, goBack, removeTodo, theme }) => {
-  const [modal, setModal] = useState(true);
+export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
+  const [modal, setModal] = useState(false);
+
+  const saveHandler = title => {
+    editTodo({ id: todo.id, title });
+    setModal(false);
+  }
 
   return (
     <View>
       <EditModal
+        value={todo.title}
         visible={modal}
         onCancel={() => setModal(false)}
+        onSave={saveHandler}
         theme={theme}
       />
 

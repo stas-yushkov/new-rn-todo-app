@@ -13,17 +13,17 @@ export default function App() {
   const [theme, setTheme] = useState(DEFAULT_COLOR_THEME);
   const [todos, setTodos] = useState([
     { id: 1, title: 'Title of FIRST todo' },
-    { id: 2, title: 2 },
-    { id: 3, title: 3 },
-    { id: 4, title: 4 },
-    { id: 5, title: 5 },
-    { id: 6, title: 6 },
-    { id: 7, title: 7 },
-    { id: 8, title: 8 },
-    { id: 9, title: 9 },
-    { id: 10, title: 10 },
-    { id: 11, title: 11 },
-    { id: 12, title: 12 },
+    { id: 2, title: '2' },
+    { id: 3, title: '3' },
+    { id: 4, title: '4' },
+    { id: 5, title: '5' },
+    { id: 6, title: '6' },
+    { id: 7, title: '7' },
+    { id: 8, title: '8' },
+    { id: 9, title: '9' },
+    { id: 10, title: '10' },
+    { id: 11, title: '11' },
+    { id: 12, title: '12' },
   ]);
 
   const addTodo = (title) => {
@@ -34,6 +34,18 @@ export default function App() {
         title
       }
     ])
+  }
+
+  const editTodo = (updatedTodo) => {
+    setTodos(prev =>
+      prev.map(item => {
+        if (item.id === updatedTodo.id) {
+          item.title = updatedTodo.title;
+        }
+        return item;
+      })
+
+    )
   }
 
   const removeTodo = (itemId) => {
@@ -84,6 +96,7 @@ export default function App() {
         todo={selectedTodo}
         goBack={() => setTodoId(null)}
         removeTodo={removeTodo}
+        editTodo={editTodo}
       />
     )
   }
