@@ -6,7 +6,7 @@ export default {
     PLACEHOLDER_TEXT_COLOR: '#838183',
     TEXT_COLOR: '#cecdce',
     TODO_BORDER_COLOR: '#a4a3a5',
-    ALERT_COLOR: '#e06252',
+    DANGER_COLOR: '#e06252',
     EDIT_BUTTON_COLOR: '#c5c53e',
     SHADOW_COLOR: '#c678dd',
   },
@@ -17,7 +17,7 @@ export default {
     PLACEHOLDER_TEXT_COLOR: '#888888',
     TEXT_COLOR: '#101010',
     TODO_BORDER_COLOR: '#a4a3a5',
-    ALERT_COLOR: '#e06252',
+    DANGER_COLOR: '#e06252',
     EDIT_BUTTON_COLOR: '#c5c53e',
     SHADOW_COLOR: '#101010',
   }

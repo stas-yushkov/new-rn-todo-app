@@ -41,6 +41,9 @@ export const AddTodo = ({ onSubmit, theme }) => {
         value={value}
         placeholder='Please specify todo title'
         placeholderTextColor={colors[theme].PLACEHOLDER_TEXT_COLOR}
+        autoCapitalize='none'
+        autoCorrect={false}
+        maxLength={64}
       />
       <Button
         title="Add"
