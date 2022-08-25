@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput, Button, Modal, Alert } from 'react-native';
 
-import colors from '../constants/colors';
+import colors from '../../constants/colors';
 
 
-export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
-  const [title, setTitle] = useState(value)
+export const AddModal = ({ visible, onCancel, theme, onSave }) => {
+  const [title, setTitle] = useState('')
 
   const saveHandler = () => {
     if (title.trim().length < 3) {
@@ -17,7 +17,8 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
       )
     } else {
       console.log('onSave');
-      onSave(title.trim())
+      onSave(title.trim());
+      setTitle('');
     }
   }
 

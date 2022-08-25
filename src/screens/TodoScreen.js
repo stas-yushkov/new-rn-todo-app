@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { EditModal } from "../components/EditModal";
+import { EditModal } from "../components/modals/";
 
 import { AppCard } from "../components/ui";
 
