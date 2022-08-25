@@ -8,7 +8,7 @@ export default {
     TODO_BORDER_COLOR: '#a4a3a5',
     DANGER_COLOR: '#e06252',
     EDIT_BUTTON_COLOR: '#c5c53e',
-    SHADOW_COLOR: '#c678dd',
+    SHADOW_COLOR: '#ffffff',
   },
   light: {
     ACCENT_COLOR: '#c678dd',

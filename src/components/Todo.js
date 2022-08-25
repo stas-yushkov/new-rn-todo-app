@@ -3,8 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
-import { TextBold } from './ui';
-
+import { TextRegular } from './ui';
 
 export const Todo = ({ todo, onRemove, onOpen, theme }) => {
   return (
@@ -12,6 +11,7 @@ export const Todo = ({ todo, onRemove, onOpen, theme }) => {
       activeOpacity={ACTIVE_OPACITY_NUM}
       onPress={() => onOpen(todo.id)}
       onLongPress={onRemove.bind(null, todo.id)}
+      accessibilityLabel="Press to open todo or long press to remove todo"
     >
       <View
         style={
@@ -21,9 +21,9 @@ export const Todo = ({ todo, onRemove, onOpen, theme }) => {
           }
         }
       >
-        <TextBold theme={theme}>
+        <TextRegular theme={theme}>
           {todo.title}
-        </TextBold>
+        </TextRegular>
       </View>
     </TouchableOpacity >
   )

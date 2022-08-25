@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import { EditModal } from "../components/modals/";
 
-import { AppCard } from "../components/ui";
+import { AppCard, TextBold } from "../components/ui";
+import { FONT_SIZE } from "../constants";
 
 import colors from "../constants/colors";
-
 
 export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
   const [modal, setModal] = useState(false);
@@ -26,35 +26,36 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
       />
 
       <AppCard theme={theme} style={styles.card}>
-        <Text style={
-          {
-            ...styles.title,
-            color: colors[theme].TEXT_COLOR
-          }
-        }
+        <TextBold
+          theme={theme}
+          fontSize={FONT_SIZE.L}
+          color={colors[theme].TEXT_COLOR}
         >
           {todo.title}
-        </Text>
+        </TextBold>
         <Button
-          title='Edit'
+          title="Edit"
           color={colors[theme].EDIT_BUTTON_COLOR}
           onPress={() => setModal(true)}
+          accessibilityLabel="Edit todo"
         />
       </AppCard>
 
       <View style={styles.buttons}>
         <View style={styles.button}>
           <Button
-            title='Back'
+            title="Back"
             color={colors[theme].PLACEHOLDER_TEXT_COLOR}
             onPress={goBack}
+            accessibilityLabel="Go back"
           />
         </View>
         <View style={styles.button}>
           <Button
-            title='Remove'
+            title="Remove"
             color={colors[theme].DANGER_COLOR}
             onPress={() => { removeTodo(todo.id) }}
+            accessibilityLabel="Remove todo"
           />
         </View>
       </View>
@@ -74,7 +75,4 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 15,
   },
-  title: {
-    fontSize: 26,
-  }
 })

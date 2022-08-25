@@ -60,15 +60,15 @@ export default function App() {
   const removeTodo = (itemId) => {
     const todoToRemove = todos.find(todo => todo.id === itemId)
     Alert.alert(
-      "Removing todo...",
+      'Removing todo...',
       `Are you shure you want to remove '${todoToRemove.title}'?`,
       [
         {
-          text: "Cancel",
-          style: "cancel"
+          text: 'Cancel',
+          style: 'cancel'
         },
         {
-          text: "Remove",
+          text: 'Remove',
           onPress: () => {
             setTodoId(null);
             setTodos(prev => prev.filter(({ id }) => id !== itemId));
@@ -134,7 +134,7 @@ export default function App() {
       <Navbar
         theme={theme}
         toggleTheme={toggleTheme}
-        title='Todo App'
+        title="Todo App"
       />
 
       <View style={styles.container}>

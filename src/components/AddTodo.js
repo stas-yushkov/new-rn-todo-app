@@ -18,7 +18,6 @@ export const AddTodo = ({ onSubmit, theme }) => {
         'Please specify todo title',
         [{
           text: 'Ok',
-          onPress: () => console.log('Ok Pressed')
         }],
         {
           cancelable: true
@@ -39,9 +38,9 @@ export const AddTodo = ({ onSubmit, theme }) => {
         }
         onChangeText={setValue}
         value={value}
-        placeholder='Please specify todo title'
+        placeholder="Please specify todo title"
         placeholderTextColor={colors[theme].PLACEHOLDER_TEXT_COLOR}
-        autoCapitalize='none'
+        autoCapitalize="none"
         autoCorrect={false}
         maxLength={64}
       />
@@ -49,6 +48,7 @@ export const AddTodo = ({ onSubmit, theme }) => {
         title="Add"
         color={colors[theme].ACCENT_COLOR}
         onPress={pressHandler}
+        accessibilityLabel="Add todo"
       />
     </View>
   )

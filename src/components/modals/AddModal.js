@@ -9,14 +9,12 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
 
   const saveHandler = () => {
     if (title.trim().length < 3) {
-      console.log('Error');
       Alert.alert(
         'Error!',
         `Todo title should be 3+ sumbols long. Now title is ${title.trim().length
         } symbol(s) long. Please specify proper todo title`
       )
     } else {
-      console.log('onSave');
       onSave(title.trim());
       setTitle('');
     }
@@ -25,7 +23,7 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
   return (
     <Modal
       visible={visible}
-      animationType='slide'
+      animationType="slide"
       transparent={false}
     >
       <View style={{ ...styles.wrap, backgroundColor: colors[theme].APP_BG_COLOR }}>
@@ -37,15 +35,15 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
             borderBottomColor: colors[theme].ACCENT_COLOR,
             color: colors[theme].TEXT_COLOR,
           }}
-          placeholder='Please specify todo title'
+          placeholder="Please specify todo title"
           placeholderTextColor={colors[theme].PLACEHOLDER_TEXT_COLOR}
-          autoCapitalize='none'
+          autoCapitalize="none"
           autoCorrect={false}
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <Button title='Cancel' onPress={onCancel} color={colors[theme].DANGER_COLOR} />
-          <Button title='Save' onPress={saveHandler} color={colors[theme].ACCENT_COLOR} />
+          <Button title="Cancel" onPress={onCancel} color={colors[theme].DANGER_COLOR} accessibilityLabel="Cancel" />
+          <Button title="Save" onPress={saveHandler} color={colors[theme].ACCENT_COLOR} accessibilityLabel="Save" />
         </View>
       </View>
     </Modal>

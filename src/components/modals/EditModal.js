@@ -9,14 +9,12 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
 
   const saveHandler = () => {
     if (title.trim().length < 3) {
-      console.log('Error');
       Alert.alert(
         'Error!',
         `Todo title should be 3+ sumbols long. Now title is ${title.trim().length
         } symbol(s) long. Please specify proper todo title`
       )
     } else {
-      console.log('onSave');
       onSave(title.trim())
     }
   }
@@ -43,8 +41,8 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <Button title='Cancel' onPress={onCancel} color={colors[theme].DANGER_COLOR} />
-          <Button title='Save' onPress={saveHandler} color={colors[theme].ACCENT_COLOR} />
+          <Button title='Cancel' onPress={onCancel} color={colors[theme].DANGER_COLOR} accessibilityLabel="Cancel" />
+          <Button title='Save' onPress={saveHandler} color={colors[theme].ACCENT_COLOR} accessibilityLabel="Save" />
         </View>
       </View>
     </Modal>
