@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
+import { TextBold } from './ui';
 
 
 export const Todo = ({ todo, onRemove, onOpen, theme }) => {
@@ -20,11 +21,11 @@ export const Todo = ({ todo, onRemove, onOpen, theme }) => {
           }
         }
       >
-        <Text style={{ color: colors[theme].TEXT_COLOR }} key={todo.id}>
+        <TextBold theme={theme}>
           {todo.title}
-        </Text>
+        </TextBold>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity >
   )
 }
 
@@ -36,5 +37,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 10,
-  },
+  }
 })

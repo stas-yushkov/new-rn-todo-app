@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
+import { TextBold } from './ui';
 
 
 export const Navbar = ({ title, toggleTheme, theme }) => {
@@ -14,14 +15,13 @@ export const Navbar = ({ title, toggleTheme, theme }) => {
           backgroundColor: colors[theme].NAVBAR_BG_COLOR
         }}
       >
-        <Text
-          style={{
-            ...styles.text,
-            color: colors[theme].ACCENT_COLOR
-          }}
+        <TextBold
+          theme={theme}
+          color={colors[theme].ACCENT_COLOR}
+          fontSize={26}
         >
           {title}
-        </Text>
+        </TextBold>
       </View>
     </TouchableOpacity>
   )
@@ -34,7 +34,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     paddingBottom: 10,
   },
-  text: {
-    fontSize: 26,
-  }
 })

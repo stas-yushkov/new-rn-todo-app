@@ -1,14 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { StatusBar, StyleSheet, View, Alert } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import * as Font from 'expo-font';
 
 import { Navbar } from './src/components';
 import { MainScreen, TodoScreen } from './src/screens/';
 
-import { DEFAULT_COLOR_THEME, STATUS_BAR_STYLES } from './src/constants/';
+import { DEFAULT_COLOR_THEME, STATUS_BAR_STYLES, FONTS } from './src/constants/';
 import colors from './src/constants/colors';
 
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await Font.loadAsync({
+          [FONTS.ROBOTO_BOLD]: require('./assets/fonts/Roboto-Bold.ttf'),
+          [FONTS.ROBOTO_REGULAR]: require('./assets/fonts/Roboto-Regular.ttf'),
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
   const [todoId, setTodoId] = useState(null);
   const [theme, setTheme] = useState(DEFAULT_COLOR_THEME);
   const [todos, setTodos] = useState([
@@ -90,6 +118,10 @@ export default function App() {
     )
   }
 
+  if (!appIsReady) {
+    return null;
+  }
+
   return (
     <View
       style={
@@ -98,6 +130,7 @@ export default function App() {
           backgroundColor: colors[theme].APP_BG_COLOR
         }
       }
+      onLayout={onLayoutRootView}
     >
       <StatusBar
         animated={true}

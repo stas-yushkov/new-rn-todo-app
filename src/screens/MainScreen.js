@@ -3,8 +3,8 @@ import { StyleSheet, FlatList, View, Image, Text, TouchableOpacity } from "react
 
 import { AddTodo, Todo } from "../components";
 import { AddModal } from "../components/modals/";
+import { TextRegular } from "../components/ui/";
 import { ACTIVE_OPACITY_NUM } from "../constants";
-import colors from "../constants/colors";
 
 
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
@@ -40,12 +40,12 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
         <View style={styles.thumb}>
           <Image
             style={styles.img}
-            source={require('../../assets/add-item-512x512.png')}
+            source={require('../../assets/add-item.png')}
           />
         </View>
-        <Text style={{ ...styles.title, color: colors[theme].TEXT_COLOR }}>
+        <TextRegular fontSize={26} theme={theme}>
           There are no todos yet. Please add todo
-        </Text>
+        </TextRegular>
       </TouchableOpacity>
     )
   }
@@ -82,8 +82,4 @@ const styles = StyleSheet.create({
     width: '100%',
     resizeMode: 'contain'
   },
-  title: {
-    fontSize: 26,
-    textAlign: 'center',
-  }
 })
