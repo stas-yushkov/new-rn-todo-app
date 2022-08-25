@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, FlatList, View, Image, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, FlatList, View, Image, TouchableOpacity } from "react-native";
 
 import { AddTodo, Todo } from "../components";
 import { AddModal } from "../components/modals/";
@@ -40,7 +40,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
         <View style={styles.thumb}>
           <Image
             style={styles.img}
-            source={require('../../assets/add-item.png')}
+            source={require('../../assets/images/todo.png')}
           />
         </View>
         <TextRegular fontSize={26} theme={theme}>
