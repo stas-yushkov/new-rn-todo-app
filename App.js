@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { StatusBar, StyleSheet, View, Alert } from 'react-native';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
 
 import { Navbar } from './src/components';
 import { MainScreen, TodoScreen } from './src/screens/';
@@ -9,33 +9,25 @@ import { MainScreen, TodoScreen } from './src/screens/';
 import { DEFAULT_COLOR_THEME, STATUS_BAR_STYLES, FONTS } from './src/constants/';
 import colors from './src/constants/colors';
 
-SplashScreen.preventAutoHideAsync();
-
 export default function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
+  const [fontsLoaded] = useFonts({
+    [FONTS.ROBOTO_BOLD]: require('./assets/fonts/Roboto-Bold.ttf'),
+    [FONTS.ROBOTO_REGULAR]: require('./assets/fonts/Roboto-Regular.ttf'),
+  });
 
   useEffect(() => {
     async function prepare() {
-      try {
-        await Font.loadAsync({
-          [FONTS.ROBOTO_BOLD]: require('./assets/fonts/Roboto-Bold.ttf'),
-          [FONTS.ROBOTO_REGULAR]: require('./assets/fonts/Roboto-Regular.ttf'),
-        });
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppIsReady(true);
-      }
+      await SplashScreen.preventAutoHideAsync();
     }
 
     prepare();
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
+    if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }
-  }, [appIsReady]);
+  }, [fontsLoaded]);
 
   const [todoId, setTodoId] = useState(null);
   const [theme, setTheme] = useState(DEFAULT_COLOR_THEME);
@@ -118,7 +110,7 @@ export default function App() {
     )
   }
 
-  if (!appIsReady) {
+  if (!fontsLoaded) {
     return null;
   }
 
