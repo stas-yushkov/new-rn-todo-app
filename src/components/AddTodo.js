@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Alert, Keyboard } from "react-native";
 
-import { ButtonIco } from "./ui";
+import { ButtonIcon } from "./ui";
 
 import colors from '../constants/colors';
 
@@ -24,7 +24,6 @@ export const AddTodo = ({ onSubmit, theme, style }) => {
     } else {
       onSubmit(value);
       Keyboard.dismiss();
-      console.log(`${(new Date).toLocaleTimeString()}: ${value.trim()}`);
       setValue('');
     }
   }
@@ -47,7 +46,7 @@ export const AddTodo = ({ onSubmit, theme, style }) => {
         autoCorrect={false}
         maxLength={64}
       />
-      <ButtonIco
+      <ButtonIcon
         onPress={pressHandler}
         theme={theme}
         title="Add"

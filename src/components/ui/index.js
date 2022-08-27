@@ -1,4 +1,5 @@
 export { AppCard } from './AppCard';
 export { TextBold } from './TextBold';
 export { TextRegular } from './TextRegular';
-export { ButtonIco } from './ButtonIco';
+export { ButtonIcon } from './ButtonIcon';
+export { TouchableDependsOfOS } from './TouchableDependsOfOS';

@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
+
+import { TextBold, TouchableDependsOfOS } from './ui';
 
 import { ACTIVE_OPACITY_NUM, FontSize } from '../constants';
 import colors from '../constants/colors';
-import { TextBold } from './ui';
 
 export const Navbar = ({ title, toggleTheme, theme, style }) => {
   return (
-    <TouchableOpacity
+    <TouchableDependsOfOS
       activeOpacity={ACTIVE_OPACITY_NUM}
       onPress={toggleTheme}
       accessibilityLabel="Toggle color theme"
@@ -15,19 +16,23 @@ export const Navbar = ({ title, toggleTheme, theme, style }) => {
       <View
         style={{
           ...styles.navbar,
-          backgroundColor: colors[theme].navbarBgColor,
+          backgroundColor: Platform.OS === 'ios' ? colors[theme].appBgColor : colors[theme].accentColor,
+          ...Platform.select({
+            'ios': styles.navbarIos,
+            'android': styles.navbarAndroid
+          }),
           ...style
         }}
       >
         <TextBold
           theme={theme}
-          color={colors[theme].accentColor}
+          color={Platform.OS === 'ios' ? colors[theme].accentColor : colors.WHITE}
           fontSize={FontSize.L}
         >
           {title}
         </TextBold>
       </View>
-    </TouchableOpacity>
+    </TouchableDependsOfOS >
   )
 }
 
@@ -37,5 +42,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
     paddingBottom: 10,
+  },
+  navbarIos: {
+    borderBottomWidth: 1
+  },
+  navbarAndroid: {
   },
 })

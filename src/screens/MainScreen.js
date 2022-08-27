@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, FlatList, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, FlatList, View, Image } from "react-native";
 
 import { AddTodo, Todo } from "../components";
-import { TextRegular } from "../components/ui/";
+import { TextRegular, TouchableDependsOfOS } from "../components/ui/";
 import { AddModal } from "../components/modals/";
 
 import { ACTIVE_OPACITY_NUM, FontSize } from "../constants";
@@ -34,20 +34,22 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
 
   if (todos.length === 0) {
     content = (
-      <TouchableOpacity
+      <TouchableDependsOfOS
         activeOpacity={ACTIVE_OPACITY_NUM}
         onPress={() => setModal(true)}
       >
-        <View style={styles.thumb}>
-          <Image
-            style={styles.img}
-            source={require('../../assets/images/todo.png')}
-          />
+        <View style={styles.wrapper}>
+          <View style={styles.thumb}>
+            <Image
+              style={styles.img}
+              source={require('../../assets/images/todo.png')}
+            />
+          </View>
+          <TextRegular fontSize={FontSize.L} theme={theme} color={colors[theme].accentColor}>
+            There are no todos yet. Please add todo
+          </TextRegular>
         </View>
-        <TextRegular fontSize={FontSize.L} theme={theme} color={colors[theme].accentColor}>
-          There are no todos yet. Please add todo
-        </TextRegular>
-      </TouchableOpacity>
+      </TouchableDependsOfOS>
     )
   }
 
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    height: 300
+    height: 300,
   },
   img: {
     height: '100%',

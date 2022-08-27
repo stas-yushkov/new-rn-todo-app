@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TextInput, Modal, Alert, Keyboard } from 'react-native';
 
-import { ButtonIco } from '../ui';
+import { ButtonIcon } from '../ui';
 
 import colors from '../../constants/colors';
 
@@ -30,7 +30,7 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
   return (
     <Modal
       visible={visible}
-      animationType="slide"
+      animationType="fade"
       transparent={false}
     >
       <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor, style }}>
@@ -49,7 +49,7 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <ButtonIco
+          <ButtonIcon
             onPress={onCancel}
             theme={theme}
             title="Cancel"
@@ -57,7 +57,7 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
             name="closecircleo"
             accessibilityLabel="Cancel"
           />
-          <ButtonIco
+          <ButtonIcon
             onPress={saveHandler}
             theme={theme}
             title="Save"

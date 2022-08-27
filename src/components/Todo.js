@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+
+import { TextRegular, TouchableDependsOfOS } from './ui';
 
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
-import { TextRegular } from './ui';
 
 export const Todo = ({ todo, onRemove, onOpen, theme, style }) => {
   return (
-    <TouchableOpacity
+    <TouchableDependsOfOS
       activeOpacity={ACTIVE_OPACITY_NUM}
       onPress={() => onOpen(todo.id)}
       onLongPress={onRemove.bind(null, todo.id)}
@@ -26,7 +27,7 @@ export const Todo = ({ todo, onRemove, onOpen, theme, style }) => {
           {todo.title}
         </TextRegular>
       </View>
-    </TouchableOpacity >
+    </TouchableDependsOfOS >
   )
 }
 

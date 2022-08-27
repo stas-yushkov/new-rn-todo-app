@@ -48,5 +48,6 @@ export default {
     }
   },
 
+  WHITE: '#ffffff',
   TRANSPARENT: 'transparent',
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { AppCard, TextBold, ButtonIco } from "../components/ui";
+import { AppCard, TextBold, ButtonIcon } from "../components/ui";
 import { EditModal } from "../components/modals/";
 
 import { FontSize } from "../constants";
@@ -33,7 +33,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
         >
           {todo.title}
         </TextBold>
-        <ButtonIco
+        <ButtonIcon
           style={styles.editBtn}
           onPress={() => setModal(true)}
           theme={theme}
@@ -44,7 +44,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
       </AppCard>
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <ButtonIco
+          <ButtonIcon
             onPress={goBack}
             theme={theme}
             name="back"
@@ -52,7 +52,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
           />
         </View>
         <View style={styles.button}>
-          <ButtonIco
+          <ButtonIcon
             onPress={() => { removeTodo(todo.id) }}
             theme={theme}
             bgColor={colors[theme].buttons.negative}
