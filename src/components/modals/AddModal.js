@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TextInput, Modal, Alert, Keyboard } from 'react-native';
 
-import { ButtonIcon } from '../ui';
+import { ButtonIcon } from '../ui/ButtonIcon';
 
 import colors from '../../constants/colors';
 

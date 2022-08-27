@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, FlatList, View, Image } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, FlatList, View, Image } from 'react-native';
 
-import { AddTodo, Todo } from "../components";
-import { TextRegular, TouchableDependsOfOS } from "../components/ui/";
-import { AddModal } from "../components/modals/";
-
-import { ACTIVE_OPACITY_NUM, FontSize } from "../constants";
-import colors from "../constants/colors";
-
+import { AddTodo, Todo } from '../components';
+import { TouchableDependsOfOS } from '../components/ui/TouchableDependsOfOS';
+import { TextRegular } from '../components/ui/TextRegular';
+import { AddModal } from '../components/modals/';
+import { ACTIVE_OPACITY_NUM, FontSize } from '../constants';
+import colors from '../constants/colors';
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
   const [modal, setModal] = useState(false);
 

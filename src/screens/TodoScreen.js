@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import React, { useState } from 'react';
+import { StyleSheet, View, Dimensions } from 'react-native';
 
-import { AppCard, TextBold, ButtonIcon } from "../components/ui";
-import { EditModal } from "../components/modals/";
-
-import { FontSize } from "../constants";
-import colors from "../constants/colors";
-
+import { AppCard } from '../components/ui/AppCard';
+import { TextBold } from '../components/ui/TextBold';
+import { ButtonIcon } from '../components/ui/ButtonIcon';
+import { EditModal } from '../components/modals/';
+import { FontSize } from '../constants';
+import colors from '../constants/colors';
 export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
   const [modal, setModal] = useState(false);
 

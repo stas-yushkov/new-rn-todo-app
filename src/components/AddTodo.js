@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Alert, Keyboard } from "react-native";
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput, Alert, Keyboard } from 'react-native';
 
-import { ButtonIcon } from "./ui";
-
+import { ButtonIcon } from './ui/ButtonIcon';
 import colors from '../constants/colors';
 
 export const AddTodo = ({ onSubmit, theme, style }) => {

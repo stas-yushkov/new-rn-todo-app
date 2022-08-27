@@ -3,7 +3,7 @@
     "name": "new-rn-todo-app",
     "slug": "new-rn-todo-app",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {

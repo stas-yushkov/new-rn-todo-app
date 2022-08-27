@@ -1,2 +1,2 @@
-export { MainScreen } from "./MainScreen";
-export { TodoScreen } from "./TodoScreen";
+export { MainScreen } from './MainScreen';
+export { TodoScreen } from './TodoScreen';

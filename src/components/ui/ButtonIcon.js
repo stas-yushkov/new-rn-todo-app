@@ -17,7 +17,8 @@ import {
   Zocial,
 } from '@expo/vector-icons/';
 
-import { TouchableDependsOfOS, TextBold } from '.';
+import { TouchableDependsOfOS } from './TouchableDependsOfOS';
+import { TextBold } from './TextBold';
 
 import { ACTIVE_OPACITY_NUM, Icons } from '../../constants';
 import colors from '../../constants/colors';

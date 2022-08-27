@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native'
 
-import { TextRegular, TouchableDependsOfOS } from './ui';
+import { TouchableDependsOfOS } from './ui/TouchableDependsOfOS';
+import { TextRegular } from './ui/TextRegular';
 
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';

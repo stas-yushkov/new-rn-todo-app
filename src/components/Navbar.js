@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 
-import { TextBold, TouchableDependsOfOS } from './ui';
+import { TouchableDependsOfOS } from './ui/TouchableDependsOfOS';
+import { TextBold } from './ui/TextBold';
 
 import { ACTIVE_OPACITY_NUM, FontSize } from '../constants';
 import colors from '../constants/colors';
