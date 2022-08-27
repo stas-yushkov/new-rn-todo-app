@@ -1,29 +1,49 @@
-import React, { useState } from 'react';
-import { StyleSheet, FlatList, View, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, FlatList, View, Image, Dimensions } from 'react-native';
 
 import { AddTodo, Todo } from '../components';
 import { TouchableDependsOfOS } from '../components/ui/TouchableDependsOfOS';
 import { TextRegular } from '../components/ui/TextRegular';
 import { AddModal } from '../components/modals/';
-import { ACTIVE_OPACITY_NUM, FontSize } from '../constants';
+import { ACTIVE_OPACITY_NUM, FontSize, PADDING_HORIZONTAL } from '../constants';
 import colors from '../constants/colors';
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
   const [modal, setModal] = useState(false);
+  const [deviceWidth, setDeviceWidth] = useState(Dimensions.get('window').width - 2 * PADDING_HORIZONTAL);
+
+
+  useEffect(() => {
+    const update = () => {
+      const width = Dimensions.get('window').width - 2 * PADDING_HORIZONTAL;
+      setDeviceWidth(width);
+    }
+
+    const subscription = Dimensions.addEventListener('change', update);
+
+    return () => {
+      subscription.remove();
+    }
+  })
 
   let content = (
-    <FlatList
-      data={todos}
-      style={styles.scroll}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => (
-        <Todo
-          theme={theme}
-          todo={item}
-          onRemove={removeTodo}
-          onOpen={openTodo}
-        />
-      )}
-    />
+    <View style={{
+      width: deviceWidth,
+      flex: 1,
+    }}>
+      <FlatList
+        data={todos}
+        style={styles.scroll}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <Todo
+            theme={theme}
+            todo={item}
+            onRemove={removeTodo}
+            onOpen={openTodo}
+          />
+        )}
+      />
+    </View>
   );
 
   const saveHandler = title => {

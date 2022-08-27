@@ -1,6 +1,7 @@
 export const DEFAULT_COLOR_THEME = 'dark';
 
 export const ACTIVE_OPACITY_NUM = 0.5;
+export const PADDING_HORIZONTAL = 30;
 
 export const StatusBarStyles = Object.freeze({
   light: 'dark-content',

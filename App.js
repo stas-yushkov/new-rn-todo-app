@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Navbar } from './src/components';
 import { MainScreen, TodoScreen } from './src/screens/';
 
-import { DEFAULT_COLOR_THEME, StatusBarStyles, Fonts } from './src/constants/';
+import { DEFAULT_COLOR_THEME, StatusBarStyles, Fonts, PADDING_HORIZONTAL } from './src/constants/';
 import colors from './src/constants/colors';
 
 export default function App() {
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingHorizontal: 30,
+    paddingHorizontal: PADDING_HORIZONTAL,
     paddingVertical: 20
   },
 });
