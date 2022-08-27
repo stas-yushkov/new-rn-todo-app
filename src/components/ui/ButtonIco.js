@@ -15,7 +15,7 @@ import {
   Octicons,
   SimpleLineIcons,
   Zocial,
-} from '@expo/vector-icons/'
+} from '@expo/vector-icons/';
 
 import { TextBold } from './TextBold';
 

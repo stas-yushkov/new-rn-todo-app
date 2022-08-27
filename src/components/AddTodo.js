@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Alert } from "react-native";
+import { View, StyleSheet, TextInput, Alert, Keyboard } from "react-native";
 
 import { ButtonIco } from "./ui";
 
@@ -23,6 +23,7 @@ export const AddTodo = ({ onSubmit, theme, style }) => {
       );
     } else {
       onSubmit(value);
+      Keyboard.dismiss();
       console.log(`${(new Date).toLocaleTimeString()}: ${value.trim()}`);
       setValue('');
     }

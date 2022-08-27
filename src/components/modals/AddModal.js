@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TextInput, Modal, Alert } from 'react-native';
+import { View, StyleSheet, TextInput, Modal, Alert, Keyboard } from 'react-native';
 
 import { ButtonIco } from '../ui';
 
@@ -17,8 +17,8 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
       )
     } else {
       onSave(title.trim());
+      Keyboard.dismiss();
       console.log(`${(new Date).toLocaleTimeString()}: ${title.trim()}`);
-      setTitle('');
     }
   }
 
