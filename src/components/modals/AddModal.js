@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Modal, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, TextInput, Modal, Alert } from 'react-native';
+
+import { ButtonIco } from '../ui';
 
 import colors from '../../constants/colors';
 
-
-export const AddModal = ({ visible, onCancel, theme, onSave }) => {
+export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
   const [title, setTitle] = useState('')
 
   const saveHandler = () => {
@@ -21,19 +22,24 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
     }
   }
 
+  useEffect(() => {
+    setTitle('');
+    return () => setTitle('');
+  }, [visible])
+
   return (
     <Modal
       visible={visible}
       animationType="slide"
       transparent={false}
     >
-      <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor }}>
+      <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor, style }}>
         <TextInput
           value={title}
           onChangeText={setTitle}
           style={{
             ...styles.input,
-            borderBottomColor: colors[theme].ACCENT_COLOR,
+            borderBottomColor: colors[theme].accentColor,
             color: colors[theme].textColor,
           }}
           placeholder="Please specify todo title"
@@ -43,8 +49,22 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <Button title="Cancel" onPress={onCancel} color={colors[theme].button.negative} accessibilityLabel="Cancel" />
-          <Button title="Save" onPress={saveHandler} color={colors[theme].button.positive} accessibilityLabel="Save" />
+          <ButtonIco
+            onPress={onCancel}
+            theme={theme}
+            title="Cancel"
+            bgColor={colors[theme].buttons.negative}
+            name="closecircleo"
+            accessibilityLabel="Cancel"
+          />
+          <ButtonIco
+            onPress={saveHandler}
+            theme={theme}
+            title="Save"
+            bgColor={colors[theme].buttons.positive}
+            name="checkcircleo"
+            accessibilityLabel="Save todo"
+          />
         </View>
       </View>
     </Modal>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Modal, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, TextInput, Modal, Alert } from 'react-native';
+
+import { ButtonIco } from '../ui';
 
 import colors from '../../constants/colors';
 
-
-export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
+export const EditModal = ({ visible, onCancel, theme, value, onSave, style }) => {
   const [title, setTitle] = useState(value)
 
   const saveHandler = () => {
@@ -20,13 +21,18 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
     }
   }
 
+  useEffect(() => {
+    setTitle(value);
+    return () => setTitle(value);
+  }, [visible])
+
   return (
     <Modal
       visible={visible}
       animationType='slide'
       transparent={false}
     >
-      <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor }}>
+      <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor, ...style }}>
         <TextInput
           value={title}
           onChangeText={setTitle}
@@ -42,8 +48,22 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave }) => {
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <Button title='Cancel' onPress={onCancel} color={colors[theme].button.negative} accessibilityLabel="Cancel" />
-          <Button title='Save' onPress={saveHandler} color={colors[theme].button.positive} accessibilityLabel="Save" />
+          <ButtonIco
+            onPress={onCancel}
+            theme={theme}
+            title="Cancel"
+            bgColor={colors[theme].buttons.negative}
+            name="closecircleo"
+            accessibilityLabel="Cancel"
+          />
+          <ButtonIco
+            onPress={saveHandler}
+            theme={theme}
+            title="Save"
+            bgColor={colors[theme].buttons.positive}
+            name="checkcircleo"
+            accessibilityLabel="Save todo"
+          />
         </View>
       </View>
     </Modal>

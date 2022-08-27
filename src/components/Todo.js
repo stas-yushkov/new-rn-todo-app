@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
 import { TextRegular } from './ui';
 
-export const Todo = ({ todo, onRemove, onOpen, theme }) => {
+export const Todo = ({ todo, onRemove, onOpen, theme, style }) => {
   return (
     <TouchableOpacity
       activeOpacity={ACTIVE_OPACITY_NUM}
@@ -17,7 +17,8 @@ export const Todo = ({ todo, onRemove, onOpen, theme }) => {
         style={
           {
             ...styles.todo,
-            borderColor: colors[theme].todoBorderColor
+            borderColor: colors[theme].todoBorderColor,
+            ...style
           }
         }
       >

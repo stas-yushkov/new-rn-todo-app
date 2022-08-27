@@ -8,10 +8,14 @@ export default {
     todoBorderColor: '#a4a3a5',
     shadowColor: '#ffffff',
 
-    button: {
+    buttons: {
       accent: {
-        txt: '#ffffff',
+        text: '#ffffff',
         bg: '#c678dd',
+      },
+      neutral: {
+        text: '#ffffff',
+        bg: '#838183',
       },
       negative: '#e06252',
       positive: '#98c379',
@@ -28,16 +32,21 @@ export default {
     todoBorderColor: '#a4a3a5',
     shadowColor: '#101010',
 
-    button: {
+    buttons: {
       accent: {
-        txt: '#ffffff',
+        text: '#ffffff',
         bg: '#c678dd',
+      },
+      neutral: {
+        text: '#ffffff',
+        bg: '#838183',
       },
       negative: '#e06252',
       positive: '#98c379',
       edit: '#c5c53e',
       default: '#838183',
     }
-  }
-};
+  },
 
+  TRANSPARENT: 'transparent',
+};

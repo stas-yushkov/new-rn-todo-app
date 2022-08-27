@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { StyleSheet, FlatList, View, Image, TouchableOpacity } from "react-native";
 
 import { AddTodo, Todo } from "../components";
-import { AddModal } from "../components/modals/";
 import { TextRegular } from "../components/ui/";
+import { AddModal } from "../components/modals/";
+
 import { ACTIVE_OPACITY_NUM, FontSize } from "../constants";
 import colors from "../constants/colors";
 

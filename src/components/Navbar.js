@@ -5,7 +5,7 @@ import { ACTIVE_OPACITY_NUM, FontSize } from '../constants';
 import colors from '../constants/colors';
 import { TextBold } from './ui';
 
-export const Navbar = ({ title, toggleTheme, theme }) => {
+export const Navbar = ({ title, toggleTheme, theme, style }) => {
   return (
     <TouchableOpacity
       activeOpacity={ACTIVE_OPACITY_NUM}
@@ -15,7 +15,8 @@ export const Navbar = ({ title, toggleTheme, theme }) => {
       <View
         style={{
           ...styles.navbar,
-          backgroundColor: colors[theme].navbarBgColor
+          backgroundColor: colors[theme].navbarBgColor,
+          ...style
         }}
       >
         <TextBold

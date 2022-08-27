@@ -32,7 +32,7 @@ export default function App() {
   const [todoId, setTodoId] = useState(null);
   const [theme, setTheme] = useState(DEFAULT_COLOR_THEME);
   const [todos, setTodos] = useState([
-    // { id: 1, title: 'Title of FIRST todo' },
+    { id: 1, title: 'Title of FIRST todo' },
   ]);
 
   const addTodo = (title) => {
@@ -130,13 +130,11 @@ export default function App() {
         barStyle={StatusBarStyles[theme]}
       // hidden
       />
-
       <Navbar
         theme={theme}
         toggleTheme={toggleTheme}
         title="Todo App"
       />
-
       <View style={styles.container}>
         {content}
       </View>

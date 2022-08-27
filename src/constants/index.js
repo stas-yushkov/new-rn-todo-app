@@ -18,3 +18,20 @@ export const FontSize = Object.freeze({
   L: 26,
   XL: 36,
 });
+
+export const Icons = Object.freeze({
+  ANT_DESIGN: 'AntDesign',
+  ENTYPO: 'Entypo',
+  EVIL_ICONS: 'EvilIcons',
+  FEATHER: 'Feather',
+  FONTISTO: 'Fontisto',
+  FONT_AWESOME: 'FontAwesome',
+  FONT_AWESOME_5: 'FontAwesome5',
+  FOUNDATION: 'Foundation',
+  IONICONS: 'Ionicons',
+  MATERIAL_COMMUNITY_ICONS: 'MaterialCommunityIcons',
+  MATERIAL_ICONS: 'MaterialIcons',
+  OCTICONS: 'Octicons',
+  SIMPLE_LINE_ICONS: 'SimpleLineIcons',
+  ZOCIAL: 'Zocial',
+});

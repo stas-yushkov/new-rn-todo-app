@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
-import { Ionicons, AntDesign } from '@expo/vector-icons/';
+import { View, StyleSheet, TextInput, Alert } from "react-native";
+
+import { ButtonIco } from "./ui";
 
 import colors from '../constants/colors';
 
-
-export const AddTodo = ({ onSubmit, theme }) => {
+export const AddTodo = ({ onSubmit, theme, style }) => {
   const [value, setValue] = useState('');
 
   const pressHandler = () => {
@@ -29,7 +29,7 @@ export const AddTodo = ({ onSubmit, theme }) => {
   }
 
   return (
-    <View style={styles.block}>
+    <View style={{ ...styles.block, ...style }}>
       <TextInput
         style={
           {
@@ -46,22 +46,15 @@ export const AddTodo = ({ onSubmit, theme }) => {
         autoCorrect={false}
         maxLength={64}
       />
-      <AntDesign.Button
+      <ButtonIco
         onPress={pressHandler}
-        name="pluscircleo"
-        color={colors[theme].button.accent.txt}
-        backgroundColor={colors[theme].button.accent.bg}
-        size={32}
-      >
-        Add
-      </AntDesign.Button>
-      {/* <Ionicons name="md-checkmark-circle" size={32} color="green" /> */}
-      {/* <Button
+        theme={theme}
         title="Add"
-        color={colors[theme].ACCENT_COLOR}
-        onPress={pressHandler}
+        bgColor={colors[theme].buttons.accent.bg}
+        name="pluscircleo"
+        size={32}
         accessibilityLabel="Add todo"
-      /> */}
+      />
     </View>
   )
 }
