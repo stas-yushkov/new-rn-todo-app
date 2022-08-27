@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Alert } from "react-native";
+import { Ionicons, AntDesign } from '@expo/vector-icons/';
 
 import colors from '../constants/colors';
 
@@ -8,14 +9,11 @@ export const AddTodo = ({ onSubmit, theme }) => {
   const [value, setValue] = useState('');
 
   const pressHandler = () => {
-    if (value.trim()) {
-      onSubmit(value);
-      console.log(`${(new Date).toLocaleTimeString()}: ${value}`);
-      setValue('');
-    } else {
+    if (value.trim().length < 3) {
       Alert.alert(
-        'Todo title must be provided',
-        'Please specify todo title',
+        'Error!',
+        `Todo title should be 3+ sumbols long. Now title is ${value.trim().length
+        } symbol(s) long. Please specify proper todo title`,
         [{
           text: 'Ok',
         }],
@@ -23,6 +21,10 @@ export const AddTodo = ({ onSubmit, theme }) => {
           cancelable: true
         }
       );
+    } else {
+      onSubmit(value);
+      console.log(`${(new Date).toLocaleTimeString()}: ${value.trim()}`);
+      setValue('');
     }
   }
 
@@ -32,24 +34,34 @@ export const AddTodo = ({ onSubmit, theme }) => {
         style={
           {
             ...styles.input,
-            color: colors[theme].TEXT_COLOR,
-            borderBottomColor: colors[theme].ACCENT_COLOR,
+            color: colors[theme].textColor,
+            borderBottomColor: colors[theme].accentColor,
           }
         }
         onChangeText={setValue}
         value={value}
         placeholder="Please specify todo title"
-        placeholderTextColor={colors[theme].PLACEHOLDER_TEXT_COLOR}
+        placeholderTextColor={colors[theme].placeholderTextColor}
         autoCapitalize="none"
         autoCorrect={false}
         maxLength={64}
       />
-      <Button
+      <AntDesign.Button
+        onPress={pressHandler}
+        name="pluscircleo"
+        color={colors[theme].button.accent.txt}
+        backgroundColor={colors[theme].button.accent.bg}
+        size={32}
+      >
+        Add
+      </AntDesign.Button>
+      {/* <Ionicons name="md-checkmark-circle" size={32} color="green" /> */}
+      {/* <Button
         title="Add"
         color={colors[theme].ACCENT_COLOR}
         onPress={pressHandler}
         accessibilityLabel="Add todo"
-      />
+      /> */}
     </View>
   )
 }
@@ -63,7 +75,7 @@ const styles = StyleSheet.create({
 
   },
   input: {
-    width: '80%',
+    width: '60%',
     padding: 10,
     borderStyle: 'solid',
     borderBottomWidth: 2,

@@ -3,7 +3,7 @@ import { StyleSheet, View, Button } from "react-native";
 import { EditModal } from "../components/modals/";
 
 import { AppCard, TextBold } from "../components/ui";
-import { FONT_SIZE } from "../constants";
+import { FontSize } from "../constants";
 
 import colors from "../constants/colors";
 
@@ -28,14 +28,14 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
       <AppCard theme={theme} style={styles.card}>
         <TextBold
           theme={theme}
-          fontSize={FONT_SIZE.L}
-          color={colors[theme].TEXT_COLOR}
+          fontSize={FontSize.L}
+          color={colors[theme].textColor}
         >
           {todo.title}
         </TextBold>
         <Button
           title="Edit"
-          color={colors[theme].EDIT_BUTTON_COLOR}
+          color={colors[theme].button.edit}
           onPress={() => setModal(true)}
           accessibilityLabel="Edit todo"
         />
@@ -45,7 +45,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
         <View style={styles.button}>
           <Button
             title="Back"
-            color={colors[theme].PLACEHOLDER_TEXT_COLOR}
+            color={colors[theme].button.default}
             onPress={goBack}
             accessibilityLabel="Go back"
           />
@@ -53,7 +53,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, editTodo, theme }) => {
         <View style={styles.button}>
           <Button
             title="Remove"
-            color={colors[theme].DANGER_COLOR}
+            color={colors[theme].button.negative}
             onPress={() => { removeTodo(todo.id) }}
             accessibilityLabel="Remove todo"
           />

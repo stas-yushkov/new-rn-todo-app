@@ -16,6 +16,7 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
       )
     } else {
       onSave(title.trim());
+      console.log(`${(new Date).toLocaleTimeString()}: ${title.trim()}`);
       setTitle('');
     }
   }
@@ -26,24 +27,24 @@ export const AddModal = ({ visible, onCancel, theme, onSave }) => {
       animationType="slide"
       transparent={false}
     >
-      <View style={{ ...styles.wrap, backgroundColor: colors[theme].APP_BG_COLOR }}>
+      <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor }}>
         <TextInput
           value={title}
           onChangeText={setTitle}
           style={{
             ...styles.input,
             borderBottomColor: colors[theme].ACCENT_COLOR,
-            color: colors[theme].TEXT_COLOR,
+            color: colors[theme].textColor,
           }}
           placeholder="Please specify todo title"
-          placeholderTextColor={colors[theme].PLACEHOLDER_TEXT_COLOR}
+          placeholderTextColor={colors[theme].placeholderTextColor}
           autoCapitalize="none"
           autoCorrect={false}
           maxLength={64}
         />
         <View style={styles.buttons}>
-          <Button title="Cancel" onPress={onCancel} color={colors[theme].DANGER_COLOR} accessibilityLabel="Cancel" />
-          <Button title="Save" onPress={saveHandler} color={colors[theme].ACCENT_COLOR} accessibilityLabel="Save" />
+          <Button title="Cancel" onPress={onCancel} color={colors[theme].button.negative} accessibilityLabel="Cancel" />
+          <Button title="Save" onPress={saveHandler} color={colors[theme].button.positive} accessibilityLabel="Save" />
         </View>
       </View>
     </Modal>

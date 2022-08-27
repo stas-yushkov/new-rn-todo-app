@@ -4,7 +4,8 @@ import { StyleSheet, FlatList, View, Image, TouchableOpacity } from "react-nativ
 import { AddTodo, Todo } from "../components";
 import { AddModal } from "../components/modals/";
 import { TextRegular } from "../components/ui/";
-import { ACTIVE_OPACITY_NUM, FONT_SIZE } from "../constants";
+import { ACTIVE_OPACITY_NUM, FontSize } from "../constants";
+import colors from "../constants/colors";
 
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
   const [modal, setModal] = useState(false);
@@ -42,7 +43,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
             source={require('../../assets/images/todo.png')}
           />
         </View>
-        <TextRegular fontSize={FONT_SIZE.L} theme={theme}>
+        <TextRegular fontSize={FontSize.L} theme={theme} color={colors[theme].accentColor}>
           There are no todos yet. Please add todo
         </TextRegular>
       </TouchableOpacity>

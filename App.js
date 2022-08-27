@@ -6,13 +6,13 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Navbar } from './src/components';
 import { MainScreen, TodoScreen } from './src/screens/';
 
-import { DEFAULT_COLOR_THEME, STATUS_BAR_STYLES, FONTS } from './src/constants/';
+import { DEFAULT_COLOR_THEME, StatusBarStyles, Fonts } from './src/constants/';
 import colors from './src/constants/colors';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    [FONTS.ROBOTO_BOLD]: require('./assets/fonts/Roboto-Bold.ttf'),
-    [FONTS.ROBOTO_REGULAR]: require('./assets/fonts/Roboto-Regular.ttf'),
+    [Fonts.ROBOTO_BOLD]: require('./assets/fonts/Roboto-Bold.ttf'),
+    [Fonts.ROBOTO_REGULAR]: require('./assets/fonts/Roboto-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -119,15 +119,15 @@ export default function App() {
       style={
         {
           ...styles.app,
-          backgroundColor: colors[theme].APP_BG_COLOR
+          backgroundColor: colors[theme].appBgColor
         }
       }
       onLayout={onLayoutRootView}
     >
       <StatusBar
         animated={true}
-        backgroundColor={colors[theme].NAVBAR_BG_COLOR}
-        barStyle={STATUS_BAR_STYLES[theme]}
+        backgroundColor={colors[theme].navbarBgColor}
+        barStyle={StatusBarStyles[theme]}
       // hidden
       />
 

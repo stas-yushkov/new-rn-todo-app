@@ -1,25 +1,43 @@
 export default {
   dark: {
-    ACCENT_COLOR: '#c678dd',
-    APP_BG_COLOR: '#282c34',
-    NAVBAR_BG_COLOR: '#21252b',
-    PLACEHOLDER_TEXT_COLOR: '#838183',
-    TEXT_COLOR: '#cecdce',
-    TODO_BORDER_COLOR: '#a4a3a5',
-    DANGER_COLOR: '#e06252',
-    EDIT_BUTTON_COLOR: '#c5c53e',
-    SHADOW_COLOR: '#ffffff',
+    accentColor: '#c678dd',
+    appBgColor: '#282c34',
+    navbarBgColor: '#21252b',
+    placeholderTextColor: '#838183',
+    textColor: '#cecdce',
+    todoBorderColor: '#a4a3a5',
+    shadowColor: '#ffffff',
+
+    button: {
+      accent: {
+        txt: '#ffffff',
+        bg: '#c678dd',
+      },
+      negative: '#e06252',
+      positive: '#98c379',
+      edit: '#c5c53e',
+      default: '#838183',
+    }
   },
   light: {
-    ACCENT_COLOR: '#c678dd',
-    APP_BG_COLOR: '#eeeeee',
-    NAVBAR_BG_COLOR: '#cccccc',
-    PLACEHOLDER_TEXT_COLOR: '#888888',
-    TEXT_COLOR: '#101010',
-    TODO_BORDER_COLOR: '#a4a3a5',
-    DANGER_COLOR: '#e06252',
-    EDIT_BUTTON_COLOR: '#c5c53e',
-    SHADOW_COLOR: '#101010',
+    accentColor: '#c678dd',
+    appBgColor: '#eeeeee',
+    navbarBgColor: '#cccccc',
+    placeholderTextColor: '#888888',
+    textColor: '#101010',
+    todoBorderColor: '#a4a3a5',
+    shadowColor: '#101010',
+
+    button: {
+      accent: {
+        txt: '#ffffff',
+        bg: '#c678dd',
+      },
+      negative: '#e06252',
+      positive: '#98c379',
+      edit: '#c5c53e',
+      default: '#838183',
+    }
   }
 };
 

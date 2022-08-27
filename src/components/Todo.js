@@ -17,7 +17,7 @@ export const Todo = ({ todo, onRemove, onOpen, theme }) => {
         style={
           {
             ...styles.todo,
-            borderColor: colors[theme].TODO_BORDER_COLOR
+            borderColor: colors[theme].todoBorderColor
           }
         }
       >

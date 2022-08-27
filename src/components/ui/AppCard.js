@@ -9,8 +9,8 @@ export const AppCard = ({ children, style, theme }) => {
       style={
         {
           ...styles.default,
-          shadowColor: colors[theme].SHADOW_COLOR,
-          backgroundColor: colors[theme].APP_BG_COLOR,
+          shadowColor: colors[theme].shadowColor,
+          backgroundColor: colors[theme].appBgColor,
           ...style
         }
       }
