@@ -1,4 +1,4 @@
-import { ADD_TODO, UPDATE_TODO, REMOVE_TODO, SET_SELECTED_TODO_ID, TOGGLE_THEME } from "../types";
+import { ADD_TODO, UPDATE_TODO, REMOVE_TODO, TOGGLE_THEME} from "../types";
 
 import colors from "../../constants/colors";
 
@@ -10,13 +10,6 @@ const handlers = {
       title: action.title
     }]
   }),
-
-  [SET_SELECTED_TODO_ID]: (state, action) => {
-    return ({
-      ...state,
-      selectedTodoId: action.id
-    })
-  },
 
   [TOGGLE_THEME]: (state) => {
     return ({

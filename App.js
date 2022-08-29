@@ -3,6 +3,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
 import { TodoState } from './src/context/todo/TodoState';
+import { ScreenState } from './src/context/screen/ScreenState';
 
 import { MainLayout } from './src/MainLayout'
 
@@ -33,8 +34,10 @@ export default function App() {
   }
 
   return (
-    <TodoState>
-      <MainLayout onLayoutRootView={onLayoutRootView} />
-    </TodoState>
+    <ScreenState>
+      <TodoState>
+        <MainLayout onLayoutRootView={onLayoutRootView} />
+      </TodoState>
+    </ScreenState>
   );
 }

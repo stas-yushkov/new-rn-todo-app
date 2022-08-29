@@ -5,15 +5,20 @@ import { MainScreen, TodoScreen } from './screens';
 import { Navbar } from './components';
 
 import { TodoContext } from './context/todo/todoContext';
+import { ScreenContext } from './context/screen/screenContext';
 
 import { StatusBarStyles, PADDING_HORIZONTAL } from './constants/';
 import colors from './constants/colors';
 
 export const MainLayout = ({ onLayoutRootView }) => {
   const {
-    todos, selectedTodoId, theme,
-    setSelectedTodoId, addTodo, updateTodo, removeTodo, toggleTheme
+    todos, theme,
+    addTodo, updateTodo, removeTodo, toggleTheme
   } = useContext(TodoContext)
+  const {
+    todoId,
+    changeScreen
+  } = useContext(ScreenContext)
 
   let content = (
     <MainScreen
@@ -21,17 +26,17 @@ export const MainLayout = ({ onLayoutRootView }) => {
       todos={todos}
       addTodo={addTodo}
       removeTodo={removeTodo}
-      openTodo={setSelectedTodoId}
+      openTodo={changeScreen}
     />
   )
 
-  if (selectedTodoId) {
-    const selectedTodo = todos.find(todo => todo.id === selectedTodoId)
+  if (todoId) {
+    const selectedTodo = todos.find(todo => todo.id === todoId)
     content = (
       <TodoScreen
         theme={theme}
         todo={selectedTodo}
-        goBack={() => setSelectedTodoId(null)}
+        goBack={() => changeScreen(null)}
         removeTodo={removeTodo}
         updateTodo={updateTodo}
       />
