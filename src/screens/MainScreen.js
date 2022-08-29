@@ -5,8 +5,10 @@ import { AddTodo, Todo } from '../components';
 import { TouchableDependsOfOS } from '../components/ui/TouchableDependsOfOS';
 import { TextRegular } from '../components/ui/TextRegular';
 import { AddModal } from '../components/modals/';
+
 import { ACTIVE_OPACITY_NUM, FontSize, PADDING_HORIZONTAL } from '../constants';
 import colors from '../constants/colors';
+
 export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
   const [modal, setModal] = useState(false);
   const [deviceWidth, setDeviceWidth] = useState(Dimensions.get('window').width - 2 * PADDING_HORIZONTAL);

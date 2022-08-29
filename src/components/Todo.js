@@ -12,7 +12,7 @@ export const Todo = ({ todo, onRemove, onOpen, theme, style }) => {
     <TouchableDependsOfOS
       activeOpacity={ACTIVE_OPACITY_NUM}
       onPress={() => onOpen(todo.id)}
-      onLongPress={onRemove.bind(null, todo.id)}
+      onLongPress={() => onRemove(todo.id)}
       accessibilityLabel="Press to open todo or long press to remove todo"
     >
       <View
