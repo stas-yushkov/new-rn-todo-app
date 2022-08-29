@@ -1,6 +1,4 @@
-import { ADD_TODO, UPDATE_TODO, REMOVE_TODO, TOGGLE_THEME} from "../types";
-
-import colors from "../../constants/colors";
+import { ADD_TODO, UPDATE_TODO, REMOVE_TODO } from "../types";
 
 const handlers = {
   [ADD_TODO]: (state, action) => ({
@@ -10,13 +8,6 @@ const handlers = {
       title: action.title
     }]
   }),
-
-  [TOGGLE_THEME]: (state) => {
-    return ({
-      ...state,
-      theme: state.theme === Object.keys(colors)[0] ? Object.keys(colors)[1] : Object.keys(colors)[0]
-    })
-  },
 
   [REMOVE_TODO]: (state, action) => {
     return ({

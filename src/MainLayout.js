@@ -4,21 +4,26 @@ import { StatusBar, StyleSheet, View } from 'react-native';
 import { MainScreen, TodoScreen } from './screens';
 import { Navbar } from './components';
 
-import { TodoContext } from './context/todo/todoContext';
+import { ThemeContext } from './context/theme/themeContext';
 import { ScreenContext } from './context/screen/screenContext';
+import { TodoContext } from './context/todo/todoContext';
 
 import { StatusBarStyles, PADDING_HORIZONTAL } from './constants/';
 import colors from './constants/colors';
 
 export const MainLayout = ({ onLayoutRootView }) => {
   const {
-    todos, theme,
-    addTodo, updateTodo, removeTodo, toggleTheme
-  } = useContext(TodoContext)
+    theme,
+    toggleTheme
+  } = useContext(ThemeContext)
   const {
     todoId,
     changeScreen
   } = useContext(ScreenContext)
+  const {
+    todos,
+    addTodo, updateTodo, removeTodo
+  } = useContext(TodoContext)
 
   let content = (
     <MainScreen

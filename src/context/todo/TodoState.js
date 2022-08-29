@@ -5,23 +5,18 @@ import { TodoContext } from './todoContext';
 import { ScreenContext } from '../screen/screenContext';
 import { todoReduser } from './todoReduser';
 
-import { ADD_TODO, REMOVE_TODO, UPDATE_TODO, TOGGLE_THEME } from '../types';
-
-import { DEFAULT_COLOR_THEME } from '../../constants';
+import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from '../types';
 
 export const TodoState = ({ children }) => {
   const initialState = {
     todos: [
       { id: 1, title: 'Title of FIRST todo' },
-    ],
-    theme: DEFAULT_COLOR_THEME,
+    ]
   }
   const { changeScreen } = useContext(ScreenContext)
   const [state, dispatch] = useReducer(todoReduser, initialState);
 
   const addTodo = title => dispatch({ type: ADD_TODO, title });
-
-  const toggleTheme = () => dispatch({ type: TOGGLE_THEME });
 
   const removeTodo = id => {
     const todoToRemove = state.todos.find(todo => todo.id === id)
@@ -56,7 +51,6 @@ export const TodoState = ({ children }) => {
         addTodo,
         updateTodo,
         removeTodo,
-        toggleTheme,
       }}
     >
       {children}

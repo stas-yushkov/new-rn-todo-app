@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import { TodoState } from './src/context/todo/TodoState';
 import { ScreenState } from './src/context/screen/ScreenState';
+import { ThemeState } from './src/context/theme/ThemeState';
 
 import { MainLayout } from './src/MainLayout'
 
@@ -34,10 +35,12 @@ export default function App() {
   }
 
   return (
-    <ScreenState>
-      <TodoState>
-        <MainLayout onLayoutRootView={onLayoutRootView} />
-      </TodoState>
-    </ScreenState>
+    <ThemeState>
+      <ScreenState>
+        <TodoState>
+          <MainLayout onLayoutRootView={onLayoutRootView} />
+        </TodoState>
+      </ScreenState>
+    </ThemeState>
   );
 }
