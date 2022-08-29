@@ -30,10 +30,7 @@ export const MainLayout = ({ onLayoutRootView }) => {
       />
       <Navbar title="Todo App" />
       <View style={styles.container}>
-        {todoId
-          ? <TodoScreen />
-          : <MainScreen />
-        }
+        {todoId ? <TodoScreen /> : <MainScreen />}
       </View>
     </View >
   )
