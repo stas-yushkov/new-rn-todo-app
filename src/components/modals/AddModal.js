@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, TextInput, Modal, Alert, Keyboard } from 'react-native';
+
+import { ThemeContext } from '../../context/theme/themeContext';
 
 import { ButtonIcon } from '../ui/ButtonIcon';
 
 import colors from '../../constants/colors';
 
-export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
+export const AddModal = ({ visible, onCancel, onSave, style }) => {
+  const { theme } = useContext(ThemeContext);
   const [title, setTitle] = useState('')
 
   const saveHandler = () => {
@@ -35,13 +38,13 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
     >
       <View style={{ ...styles.wrap, backgroundColor: colors[theme].appBgColor, style }}>
         <TextInput
-          value={title}
-          onChangeText={setTitle}
           style={{
             ...styles.input,
             borderBottomColor: colors[theme].accentColor,
             color: colors[theme].textColor,
           }}
+          value={title}
+          onChangeText={setTitle}
           placeholder="Please specify todo title"
           placeholderTextColor={colors[theme].placeholderTextColor}
           autoCapitalize="none"
@@ -51,7 +54,6 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
         <View style={styles.buttons}>
           <ButtonIcon
             onPress={onCancel}
-            theme={theme}
             title="Cancel"
             bgColor={colors[theme].buttons.negative}
             name="closecircleo"
@@ -59,7 +61,6 @@ export const AddModal = ({ visible, onCancel, theme, onSave, style }) => {
           />
           <ButtonIcon
             onPress={saveHandler}
-            theme={theme}
             title="Save"
             bgColor={colors[theme].buttons.positive}
             name="checkcircleo"

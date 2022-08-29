@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   AntDesign,
@@ -17,6 +17,8 @@ import {
   Zocial,
 } from '@expo/vector-icons/';
 
+import { ThemeContext } from '../../context/theme/themeContext';
+
 import { TouchableDependsOfOS } from './TouchableDependsOfOS';
 import { TextBold } from './TextBold';
 
@@ -24,10 +26,10 @@ import { ACTIVE_OPACITY_NUM, Icons } from '../../constants';
 import colors from '../../constants/colors';
 
 export const ButtonIcon = (props) => {
+  const { theme } = useContext(ThemeContext);
   const {
     name,
     title,
-    theme,
     style,
     onPress,
     children,
@@ -100,14 +102,11 @@ export const ButtonIcon = (props) => {
         <TextBold
           color={color}
           fontSize={fontSize}
-          theme={theme}
           style={textStyle}
         >
           {title || children}
         </TextBold>
       </View>
-
-
     </TouchableDependsOfOS>
   )
 }

@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+
+import { ThemeContext } from '../context/theme/themeContext';
+import { ScreenContext } from '../context/screen/screenContext';
+import { TodoContext } from '../context/todo/todoContext';
 
 import { AppCard } from '../components/ui/AppCard';
 import { TextBold } from '../components/ui/TextBold';
@@ -9,7 +13,13 @@ import { EditModal } from '../components/modals/';
 import { FontSize } from '../constants';
 import colors from '../constants/colors';
 
-export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo, theme }) => {
+export const TodoScreen = () => {
+  const { todos, updateTodo, removeTodo } = useContext(TodoContext);
+  const { changeScreen, todoId } = useContext(ScreenContext);
+  const { theme } = useContext(ThemeContext);
+
+  const todo = todos.find(todo => todo.id === todoId);
+
   const [modal, setModal] = useState(false);
 
   const saveHandler = title => {
@@ -24,12 +34,10 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo, theme }) => {
         visible={modal}
         onCancel={() => setModal(false)}
         onSave={saveHandler}
-        theme={theme}
       />
       <AppCard theme={theme} style={styles.card}>
         <TextBold
           style={styles.title}
-          theme={theme}
           fontSize={FontSize.L}
           color={colors[theme].textColor}
         >
@@ -38,7 +46,6 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo, theme }) => {
         <ButtonIcon
           style={styles.editBtn}
           onPress={() => setModal(true)}
-          theme={theme}
           bgColor={colors[theme].buttons.edit}
           name="edit"
           accessibilityLabel="Edit todo"
@@ -47,8 +54,7 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo, theme }) => {
       <View style={styles.buttons}>
         <View style={styles.button}>
           <ButtonIcon
-            onPress={goBack}
-            theme={theme}
+            onPress={() => changeScreen(null)}
             name="back"
             accessibilityLabel="Go back"
           />
@@ -56,7 +62,6 @@ export const TodoScreen = ({ todo, goBack, removeTodo, updateTodo, theme }) => {
         <View style={styles.button}>
           <ButtonIcon
             onPress={() => { removeTodo(todo.id) }}
-            theme={theme}
             bgColor={colors[theme].buttons.negative}
             name="delete"
             accessibilityLabel="Remove todo"

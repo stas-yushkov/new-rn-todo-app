@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, TextInput, Alert, Keyboard } from 'react-native';
+
+import { ThemeContext } from '../context/theme/themeContext';
 
 import { ButtonIcon } from './ui/ButtonIcon';
 import colors from '../constants/colors';
 
-export const AddTodo = ({ onSubmit, theme, style }) => {
+export const AddTodo = ({ onSubmit, style }) => {
+  const { theme } = useContext(ThemeContext);
   const [value, setValue] = useState('');
 
   const pressHandler = () => {
@@ -30,13 +33,11 @@ export const AddTodo = ({ onSubmit, theme, style }) => {
   return (
     <View style={{ ...styles.block, ...style }}>
       <TextInput
-        style={
-          {
-            ...styles.input,
-            color: colors[theme].textColor,
-            borderBottomColor: colors[theme].accentColor,
-          }
-        }
+        style={{
+          ...styles.input,
+          color: colors[theme].textColor,
+          borderBottomColor: colors[theme].accentColor,
+        }}
         onChangeText={setValue}
         value={value}
         placeholder="Please specify todo title"
@@ -47,7 +48,6 @@ export const AddTodo = ({ onSubmit, theme, style }) => {
       />
       <ButtonIcon
         onPress={pressHandler}
-        theme={theme}
         title="Add"
         bgColor={colors[theme].buttons.accent.bg}
         name="pluscircleo"

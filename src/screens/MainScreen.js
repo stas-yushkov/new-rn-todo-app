@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, FlatList, View, Image, Dimensions } from 'react-native';
+
+import { ThemeContext } from '../context/theme/themeContext';
+import { ScreenContext } from '../context/screen/screenContext';
+import { TodoContext } from '../context/todo/todoContext';
 
 import { AddTodo, Todo } from '../components';
 import { TouchableDependsOfOS } from '../components/ui/TouchableDependsOfOS';
@@ -9,7 +13,11 @@ import { AddModal } from '../components/modals/';
 import { ACTIVE_OPACITY_NUM, FontSize, PADDING_HORIZONTAL } from '../constants';
 import colors from '../constants/colors';
 
-export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
+export const MainScreen = () => {
+  const { addTodo, todos, removeTodo } = useContext(TodoContext);
+  const { changeScreen } = useContext(ScreenContext);
+  const { theme } = useContext(ThemeContext);
+
   const [modal, setModal] = useState(false);
   const [deviceWidth, setDeviceWidth] = useState(Dimensions.get('window').width - 2 * PADDING_HORIZONTAL);
 
@@ -38,10 +46,9 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <Todo
-            theme={theme}
             todo={item}
             onRemove={removeTodo}
-            onOpen={openTodo}
+            onOpen={changeScreen}
           />
         )}
       />
@@ -66,7 +73,7 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
               source={require('../../assets/images/todo.png')}
             />
           </View>
-          <TextRegular fontSize={FontSize.L} theme={theme} color={colors[theme].accentColor}>
+          <TextRegular fontSize={FontSize.L} color={colors[theme].accentColor}>
             There are no todos yet. Please add todo
           </TextRegular>
         </View>
@@ -76,12 +83,11 @@ export const MainScreen = ({ addTodo, todos, removeTodo, openTodo, theme }) => {
 
   return (
     <View style={styles.container}>
-      <AddTodo theme={theme} onSubmit={addTodo} />
+      <AddTodo onSubmit={addTodo} />
       <AddModal
         visible={modal}
         onCancel={() => setModal(false)}
         onSave={saveHandler}
-        theme={theme}
       />
       {content}
     </View>

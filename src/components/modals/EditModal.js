@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { View, StyleSheet, TextInput, Modal, Alert, Keyboard } from 'react-native';
+
+import { ThemeContext } from '../../context/theme/themeContext';
 
 import { ButtonIcon } from '../ui/ButtonIcon';
 
 import colors from '../../constants/colors';
 
-export const EditModal = ({ visible, onCancel, theme, value, onSave, style }) => {
+export const EditModal = ({ visible, onCancel, value, onSave, style }) => {
+  const { theme } = useContext(ThemeContext);
   const [title, setTitle] = useState(value)
 
   const saveHandler = () => {
@@ -50,7 +53,6 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave, style }) =>
         <View style={styles.buttons}>
           <ButtonIcon
             onPress={onCancel}
-            theme={theme}
             title="Cancel"
             bgColor={colors[theme].buttons.negative}
             name="closecircleo"
@@ -58,7 +60,6 @@ export const EditModal = ({ visible, onCancel, theme, value, onSave, style }) =>
           />
           <ButtonIcon
             onPress={saveHandler}
-            theme={theme}
             title="Save"
             bgColor={colors[theme].buttons.positive}
             name="checkcircleo"

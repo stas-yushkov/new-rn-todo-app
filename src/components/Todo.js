@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet } from 'react-native'
+
+import { ThemeContext } from '../context/theme/themeContext';
 
 import { TouchableDependsOfOS } from './ui/TouchableDependsOfOS';
 import { TextRegular } from './ui/TextRegular';
@@ -7,7 +9,9 @@ import { TextRegular } from './ui/TextRegular';
 import { ACTIVE_OPACITY_NUM } from '../constants';
 import colors from '../constants/colors';
 
-export const Todo = ({ todo, onRemove, onOpen, theme, style }) => {
+export const Todo = ({ todo, onRemove, onOpen, style }) => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <TouchableDependsOfOS
       activeOpacity={ACTIVE_OPACITY_NUM}
@@ -16,15 +20,13 @@ export const Todo = ({ todo, onRemove, onOpen, theme, style }) => {
       accessibilityLabel="Press to open todo or long press to remove todo"
     >
       <View
-        style={
-          {
-            ...styles.todo,
-            borderColor: colors[theme].todoBorderColor,
-            ...style
-          }
-        }
+        style={{
+          ...styles.todo,
+          borderColor: colors[theme].todoBorderColor,
+          ...style
+        }}
       >
-        <TextRegular theme={theme}>
+        <TextRegular>
           {todo.title}
         </TextRegular>
       </View>

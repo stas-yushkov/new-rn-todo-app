@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
+
+import { ThemeContext } from '../context/theme/themeContext';
 
 import { TouchableDependsOfOS } from './ui/TouchableDependsOfOS';
 import { TextBold } from './ui/TextBold';
@@ -7,7 +9,9 @@ import { TextBold } from './ui/TextBold';
 import { ACTIVE_OPACITY_NUM, FontSize } from '../constants';
 import colors from '../constants/colors';
 
-export const Navbar = ({ title, toggleTheme, theme, style }) => {
+export const Navbar = ({ title }) => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
     <TouchableDependsOfOS
       activeOpacity={ACTIVE_OPACITY_NUM}
@@ -21,12 +25,10 @@ export const Navbar = ({ title, toggleTheme, theme, style }) => {
           ...Platform.select({
             'ios': styles.navbarIos,
             'android': styles.navbarAndroid
-          }),
-          ...style
+          })
         }}
       >
         <TextBold
-          theme={theme}
           color={Platform.OS === 'ios' ? colors[theme].accentColor : colors.WHITE}
           fontSize={FontSize.L}
         >
