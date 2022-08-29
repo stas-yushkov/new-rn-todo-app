@@ -25,10 +25,10 @@ export const AddModal = ({ visible, onCancel, onSave, style }) => {
     }
   }
 
-  useEffect(() => {
+  const cancelHandler = () => {
     setTitle('');
-    return () => setTitle('');
-  }, [visible])
+    onCancel();
+  }
 
   return (
     <Modal
@@ -53,7 +53,7 @@ export const AddModal = ({ visible, onCancel, onSave, style }) => {
         />
         <View style={styles.buttons}>
           <ButtonIcon
-            onPress={onCancel}
+            onPress={cancelHandler}
             title="Cancel"
             bgColor={colors[theme].buttons.negative}
             name="closecircleo"

@@ -24,10 +24,10 @@ export const EditModal = ({ visible, onCancel, value, onSave, style }) => {
     }
   }
 
-  useEffect(() => {
+  const cancelHandler = () => {
     setTitle(value);
-    return () => setTitle(value);
-  }, [visible])
+    onCancel();
+  }
 
   return (
     <Modal
@@ -52,7 +52,7 @@ export const EditModal = ({ visible, onCancel, value, onSave, style }) => {
         />
         <View style={styles.buttons}>
           <ButtonIcon
-            onPress={onCancel}
+            onPress={cancelHandler}
             title="Cancel"
             bgColor={colors[theme].buttons.negative}
             name="closecircleo"
