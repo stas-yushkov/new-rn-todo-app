@@ -1,14 +1,13 @@
 import React, { useReducer } from 'react';
+import { useColorScheme } from 'react-native';
 
 import { ThemeContext } from './themeContext';
 import { themeReduser } from './themeReduser';
 
 import { TOGGLE_THEME } from '../types';
 
-import { DEFAULT_COLOR_THEME } from '../../constants';
-
 export const ThemeState = ({ children }) => {
-  const [state, dispatch] = useReducer(themeReduser, DEFAULT_COLOR_THEME);
+  const [state, dispatch] = useReducer(themeReduser, useColorScheme());
 
   const toggleTheme = () => dispatch({ type: TOGGLE_THEME })
 
