@@ -37,7 +37,7 @@ export const TodoState = ({ children }) => {
       const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
       dispatch({ type: FETCH_TODOS, todos });
     } catch (error) {
-      showError(`Something went wrong... \n ${error}`);
+      showError('Something went wrong...');
       console.error(error);
     } finally {
       hideLoader();
@@ -45,31 +45,25 @@ export const TodoState = ({ children }) => {
   };
 
   const addTodo = async title => {
-    //need to handle loading
     clearError();
     try {
       const data = await Firebase.post({ title });
       dispatch({ type: ADD_TODO, title, id: data.name });
     } catch (error) {
-      showError(`Something went wrong... \n ${error}`);
+      showError('Something went wrong...');
       console.error(error);
-    } finally {
-      // hideLoader();//need to handle loading
-    }
+    };
   };
 
   const updateTodo = async ({ id, title }) => {
-    // showLoader();//need to handle loading
     clearError();
     try {
       await Firebase.patch(id, { title })
       dispatch({ type: UPDATE_TODO, id, title })
     } catch (error) {
-      showError(`Something went wrong... \n ${error}`);
+      showError('Something went wrong...');
       console.error(error);
-    } finally {
-      // hideLoader();//need to handle loading
-    }
+    };
   };
 
   const removeTodo = id => {
@@ -85,16 +79,13 @@ export const TodoState = ({ children }) => {
           onPress: async () => {
             changeScreen(null);
             clearError();
-            // showLoader();//need to handle loading
             try {
               await Firebase.delete(id);
               dispatch({ type: REMOVE_TODO, id })
             } catch (error) {
-              showError(`Something went wrong... \n ${error}`);
+              showError('Something went wrong...');
               console.error(error);
-            } finally {
-              // hideLoader();//need to handle loading
-            }
+            };
           }
         }
       ],

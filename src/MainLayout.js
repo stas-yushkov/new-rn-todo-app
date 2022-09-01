@@ -26,7 +26,6 @@ export const MainLayout = ({ onLayoutRootView }) => {
         animated={true}
         backgroundColor={colors[theme].navbarBgColor}
         barStyle={StatusBarStyles[theme]}
-      // hidden
       />
       <Navbar title="Todo App" />
       <View style={styles.container}>

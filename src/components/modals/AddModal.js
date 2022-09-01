@@ -21,7 +21,6 @@ export const AddModal = ({ visible, onCancel, onSave, style }) => {
     } else {
       onSave(title.trim());
       Keyboard.dismiss();
-      console.log(`${(new Date).toLocaleTimeString()}: ${title.trim()}`);
     }
   }
 
