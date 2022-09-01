@@ -6,6 +6,7 @@ import { TodoContext } from './todoContext';
 import { ScreenContext } from '../screen/screenContext';
 import { todoReduser } from './todoReduser';
 
+import { Firebase } from '../../utils/firebase'
 
 import {
   ADD_TODO, REMOVE_TODO, UPDATE_TODO,
@@ -32,19 +33,11 @@ export const TodoState = ({ children }) => {
     showLoader();
     clearError();
     try {
-      // await new Promise(r => setTimeout(r, 2000));//just sleep 2000ms
-      const response = await fetch(setDB_URL_BASE(),
-        {
-          method: 'GET',
-          headers: { 'Content-type': 'application/json' },
-        }
-      );
-      const data = await response.json();
+      const data = await Firebase.get();
       const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
       dispatch({ type: FETCH_TODOS, todos });
     } catch (error) {
       showError(`Something went wrong... \n ${error}`);
-      // Network request failed
       console.error(error);
     } finally {
       hideLoader();
@@ -53,29 +46,23 @@ export const TodoState = ({ children }) => {
 
   const addTodo = async title => {
     //need to handle loading
-    const response = await fetch(setDB_URL_BASE(),
-      {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ title })
-      }
-    );
-    const data = await response.json();
-    dispatch({ type: ADD_TODO, title, id: data.name })
+    clearError();
+    try {
+      const data = await Firebase.post({ title });
+      dispatch({ type: ADD_TODO, title, id: data.name });
+    } catch (error) {
+      showError(`Something went wrong... \n ${error}`);
+      console.error(error);
+    } finally {
+      // hideLoader();//need to handle loading
+    }
   };
 
   const updateTodo = async ({ id, title }) => {
     // showLoader();//need to handle loading
     clearError();
     try {
-      // await new Promise(r => setTimeout(r, 2000));//just sleep 2000ms
-      const response = await fetch(setDB_URL_BASE(id),
-        {
-          method: 'PATCH',
-          headers: { 'Content-type': 'application/json' },
-          body: JSON.stringify({ title })
-        })
-      console.log(await response.json());
+      await Firebase.patch(id, { title })
       dispatch({ type: UPDATE_TODO, id, title })
     } catch (error) {
       showError(`Something went wrong... \n ${error}`);
@@ -92,20 +79,22 @@ export const TodoState = ({ children }) => {
       'Removing todo...',
       `Are you shure you want to remove '${todoToRemove.title}'?`,
       [
-        {
-          text: 'Cancel',
-          style: 'cancel'
-        },
+        { text: 'Cancel', style: 'cancel' },
         {
           text: 'Remove',
           onPress: async () => {
             changeScreen(null);
-            await fetch(setDB_URL_BASE(id),
-              {
-                method: 'DELETE',
-                headers: { 'Content-type': 'application/json' },
-              })
-            dispatch({ type: REMOVE_TODO, id })
+            clearError();
+            // showLoader();//need to handle loading
+            try {
+              await Firebase.delete(id);
+              dispatch({ type: REMOVE_TODO, id })
+            } catch (error) {
+              showError(`Something went wrong... \n ${error}`);
+              console.error(error);
+            } finally {
+              // hideLoader();//need to handle loading
+            }
           }
         }
       ],
