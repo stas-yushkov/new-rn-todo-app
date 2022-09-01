@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { StyleSheet, FlatList, View, Image, Dimensions } from 'react-native';
 
 import { ThemeContext } from '../context/theme/themeContext';
@@ -14,26 +14,12 @@ import { ACTIVE_OPACITY_NUM, FontSize, PADDING_HORIZONTAL } from '../constants';
 import colors from '../constants/colors';
 
 export const MainScreen = () => {
-  const { addTodo, todos, removeTodo } = useContext(TodoContext);
+  const { addTodo, todos, removeTodo, fetchTodos, loading, error } = useContext(TodoContext);
   const { changeScreen } = useContext(ScreenContext);
   const { theme } = useContext(ThemeContext);
 
   const [modal, setModal] = useState(false);
   const [deviceWidth, setDeviceWidth] = useState(Dimensions.get('window').width - 2 * PADDING_HORIZONTAL);
-
-
-  useEffect(() => {
-    const update = () => {
-      const width = Dimensions.get('window').width - 2 * PADDING_HORIZONTAL;
-      setDeviceWidth(width);
-    }
-
-    const subscription = Dimensions.addEventListener('change', update);
-
-    return () => {
-      subscription.remove();
-    }
-  })
 
   let content = (
     <View style={{
@@ -58,7 +44,7 @@ export const MainScreen = () => {
   const saveHandler = title => {
     addTodo(title);
     setModal(false);
-  }
+  };
 
   if (todos.length === 0) {
     content = (
@@ -79,7 +65,26 @@ export const MainScreen = () => {
         </View>
       </TouchableDependsOfOS>
     )
-  }
+  };
+
+  useEffect(() => {
+    const update = () => {
+      const width = Dimensions.get('window').width - 2 * PADDING_HORIZONTAL;
+      setDeviceWidth(width);
+    }
+
+    const subscription = Dimensions.addEventListener('change', update);
+
+    return () => {
+      subscription.remove();
+    }
+  });
+
+  const loadTodos = useCallback(async () => await fetchTodos(), [fetchTodos]);
+
+  useEffect(() => {
+    loadTodos();
+  }, []);
 
   return (
     <View style={styles.container}>
