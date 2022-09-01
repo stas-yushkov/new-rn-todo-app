@@ -25,6 +25,7 @@ export const TodoState = ({ children }) => {
   const DB_URL_BASE = Constants.manifest.extra.DB_URL_BASE;
 
   const fetchTodos = async () => {
+    showLoader();
     const response = await fetch(DB_URL_BASE,
       {
         method: 'GET',
@@ -34,6 +35,7 @@ export const TodoState = ({ children }) => {
     const data = await response.json();
     const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
     dispatch({ type: FETCH_TODOS, todos });
+    hideLoader();
   };
 
   const addTodo = async title => {

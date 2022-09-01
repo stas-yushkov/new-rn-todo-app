@@ -21,7 +21,7 @@ export const Navbar = ({ title }) => {
       <View
         style={{
           ...styles.navbar,
-          backgroundColor: Platform.OS === 'ios' ? colors[theme].appBgColor : colors[theme].accentColor,
+          backgroundColor: Platform.OS === 'ios' ? colors[theme].appBgColor : colors.accentColor,
           ...Platform.select({
             'ios': styles.navbarIos,
             'android': styles.navbarAndroid
@@ -29,7 +29,7 @@ export const Navbar = ({ title }) => {
         }}
       >
         <TextBold
-          color={Platform.OS === 'ios' ? colors[theme].accentColor : colors.WHITE}
+          color={Platform.OS === 'ios' ? colors.accentColor : colors.WHITE}
           fontSize={FontSize.L}
         >
           {title}

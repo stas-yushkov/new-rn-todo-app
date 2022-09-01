@@ -1,6 +1,5 @@
 export default {
   dark: {
-    accentColor: '#c678dd',
     appBgColor: '#282c34',
     navbarBgColor: '#21252b',
     placeholderTextColor: '#838183',
@@ -24,7 +23,6 @@ export default {
     }
   },
   light: {
-    accentColor: '#c678dd',
     appBgColor: '#eeeeee',
     navbarBgColor: '#cccccc',
     placeholderTextColor: '#888888',
@@ -48,6 +46,7 @@ export default {
     }
   },
 
+  accentColor: '#c678dd',
   WHITE: '#ffffff',
   TRANSPARENT: 'transparent',
 };

@@ -6,9 +6,10 @@ import { ScreenContext } from '../context/screen/screenContext';
 import { TodoContext } from '../context/todo/todoContext';
 
 import { AddTodo, Todo } from '../components';
+import { AddModal } from '../components/modals/';
 import { TouchableDependsOfOS } from '../components/ui/TouchableDependsOfOS';
 import { TextRegular } from '../components/ui/TextRegular';
-import { AddModal } from '../components/modals/';
+import { AppLoader } from '../components/ui/AppLoader';
 
 import { ACTIVE_OPACITY_NUM, FontSize, PADDING_HORIZONTAL } from '../constants';
 import colors from '../constants/colors';
@@ -59,7 +60,7 @@ export const MainScreen = () => {
               source={require('../../assets/images/todo.png')}
             />
           </View>
-          <TextRegular fontSize={FontSize.L} color={colors[theme].accentColor}>
+          <TextRegular fontSize={FontSize.L} color={colors.accentColor}>
             There are no todos yet. Please add todo
           </TextRegular>
         </View>
@@ -85,6 +86,10 @@ export const MainScreen = () => {
   useEffect(() => {
     loadTodos();
   }, []);
+
+  if (loading) {
+    return <AppLoader />
+  }
 
   return (
     <View style={styles.container}>

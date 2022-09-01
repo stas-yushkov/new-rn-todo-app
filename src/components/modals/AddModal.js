@@ -40,7 +40,7 @@ export const AddModal = ({ visible, onCancel, onSave, style }) => {
         <TextInput
           style={{
             ...styles.input,
-            borderBottomColor: colors[theme].accentColor,
+            borderBottomColor: colors.accentColor,
             color: colors[theme].textColor,
           }}
           value={title}

@@ -36,7 +36,7 @@ export const AddTodo = ({ onSubmit, style }) => {
         style={{
           ...styles.input,
           color: colors[theme].textColor,
-          borderBottomColor: colors[theme].accentColor,
+          borderBottomColor: colors.accentColor,
         }}
         onChangeText={setValue}
         value={value}

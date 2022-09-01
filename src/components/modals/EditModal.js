@@ -41,7 +41,7 @@ export const EditModal = ({ visible, onCancel, value, onSave, style }) => {
           onChangeText={setTitle}
           style={{
             ...styles.input,
-            borderBottomColor: colors[theme].accentColor,
+            borderBottomColor: colors.accentColor,
             color: colors[theme].textColor,
           }}
           placeholder='Please specify todo title'
