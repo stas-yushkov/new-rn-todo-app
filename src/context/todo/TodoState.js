@@ -32,7 +32,7 @@ export const TodoState = ({ children }) => {
     showLoader();
     clearError();
     try {
-      // await new Promise(r => setTimeout(r, 2000));//just sleep 2s
+      // await new Promise(r => setTimeout(r, 2000));//just sleep 2000ms
       const response = await fetch(setDB_URL_BASE(),
         {
           method: 'GET',
@@ -68,7 +68,7 @@ export const TodoState = ({ children }) => {
     // showLoader();//need to handle loading
     clearError();
     try {
-      await new Promise(r => setTimeout(r, 2000));//just sleep 2s
+      // await new Promise(r => setTimeout(r, 2000));//just sleep 2000ms
       const response = await fetch(setDB_URL_BASE(id),
         {
           method: 'PATCH',
@@ -98,8 +98,13 @@ export const TodoState = ({ children }) => {
         },
         {
           text: 'Remove',
-          onPress: () => {
+          onPress: async () => {
             changeScreen(null);
+            await fetch(setDB_URL_BASE(id),
+              {
+                method: 'DELETE',
+                headers: { 'Content-type': 'application/json' },
+              })
             dispatch({ type: REMOVE_TODO, id })
           }
         }
