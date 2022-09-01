@@ -22,14 +22,18 @@ export const TodoState = ({ children }) => {
   }
   const { changeScreen } = useContext(ScreenContext)
   const [state, dispatch] = useReducer(todoReduser, initialState);
-  const DB_URL_BASE = Constants.manifest.extra.DB_URL_BASE;
+  const setDB_URL_BASE = (id) => (
+    id
+      ? `${Constants.manifest.extra.DB_URL_BASE}/${id}.json`
+      : `${Constants.manifest.extra.DB_URL_BASE}.json`
+  );
 
   const fetchTodos = async () => {
     showLoader();
     clearError();
     try {
       // await new Promise(r => setTimeout(r, 2000));//just sleep 2s
-      const response = await fetch(DB_URL_BASE,
+      const response = await fetch(setDB_URL_BASE(),
         {
           method: 'GET',
           headers: { 'Content-type': 'application/json' },
@@ -48,7 +52,8 @@ export const TodoState = ({ children }) => {
   };
 
   const addTodo = async title => {
-    const response = await fetch(DB_URL_BASE,
+    //need to handle loading
+    const response = await fetch(setDB_URL_BASE(),
       {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
@@ -59,7 +64,26 @@ export const TodoState = ({ children }) => {
     dispatch({ type: ADD_TODO, title, id: data.name })
   };
 
-  const updateTodo = ({ id, title }) => dispatch({ type: UPDATE_TODO, id, title });
+  const updateTodo = async ({ id, title }) => {
+    // showLoader();//need to handle loading
+    clearError();
+    try {
+      await new Promise(r => setTimeout(r, 2000));//just sleep 2s
+      const response = await fetch(setDB_URL_BASE(id),
+        {
+          method: 'PATCH',
+          headers: { 'Content-type': 'application/json' },
+          body: JSON.stringify({ title })
+        })
+      console.log(await response.json());
+      dispatch({ type: UPDATE_TODO, id, title })
+    } catch (error) {
+      showError(`Something went wrong... \n ${error}`);
+      console.error(error);
+    } finally {
+      // hideLoader();//need to handle loading
+    }
+  };
 
   const removeTodo = id => {
     const todoToRemove = state.todos.find(todo => todo.id === id)
