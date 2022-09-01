@@ -47,6 +47,7 @@ export default {
   },
 
   accentColor: '#c678dd',
+  dangerColor: '#e06252',
   WHITE: '#ffffff',
   TRANSPARENT: 'transparent',
 };

@@ -10,6 +10,7 @@ import { AddModal } from '../components/modals/';
 import { TouchableDependsOfOS } from '../components/ui/TouchableDependsOfOS';
 import { TextRegular } from '../components/ui/TextRegular';
 import { AppLoader } from '../components/ui/AppLoader';
+import { ButtonIcon } from '../components/ui/ButtonIcon';
 
 import { ACTIVE_OPACITY_NUM, FontSize, PADDING_HORIZONTAL } from '../constants';
 import colors from '../constants/colors';
@@ -91,6 +92,25 @@ export const MainScreen = () => {
     return <AppLoader />
   }
 
+  if (error) {
+    return (
+      <View style={styles.center}>
+        <TextRegular
+          color={colors.dangerColor}
+          fontSize={20}
+        >
+          {error}
+        </TextRegular>
+        <ButtonIcon
+          name="reload1"
+          title="Retry"
+          bgColor={colors.accentColor}
+          onPress={loadTodos}
+        />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <AddTodo onSubmit={addTodo} />
@@ -121,5 +141,10 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     resizeMode: 'contain'
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 })

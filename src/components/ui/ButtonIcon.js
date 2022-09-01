@@ -41,7 +41,7 @@ export const ButtonIcon = (props) => {
     iconsSet = Icons.ANT_DESIGN,
     color = colors[theme].buttons.neutral.text,
     bgColor = colors[theme].buttons.neutral.bg,
-    iconStyle = { marginRight: (props.title || props.children) ? 10 : 0 },
+    iconStyle = { marginRight: (props.title || props.children) && props.name ? 10 : 0 },
   } = props;
 
   const Icon = (props) => {

@@ -26,16 +26,25 @@ export const TodoState = ({ children }) => {
 
   const fetchTodos = async () => {
     showLoader();
-    const response = await fetch(DB_URL_BASE,
-      {
-        method: 'GET',
-        headers: { 'Content-type': 'application/json' },
-      }
-    );
-    const data = await response.json();
-    const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
-    dispatch({ type: FETCH_TODOS, todos });
-    hideLoader();
+    clearError();
+    try {
+      // await new Promise(r => setTimeout(r, 2000));//just sleep 2s
+      const response = await fetch(DB_URL_BASE,
+        {
+          method: 'GET',
+          headers: { 'Content-type': 'application/json' },
+        }
+      );
+      const data = await response.json();
+      const todos = Object.keys(data).map(key => ({ ...data[key], id: key }))
+      dispatch({ type: FETCH_TODOS, todos });
+    } catch (error) {
+      showError(`Something went wrong... \n ${error}`);
+      // Network request failed
+      console.error(error);
+    } finally {
+      hideLoader();
+    }
   };
 
   const addTodo = async title => {
